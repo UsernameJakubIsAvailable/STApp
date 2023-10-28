@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/STApp/static/css/main.bc936868.css",
+    "main.css": "/STApp/static/css/main.dd8e30c2.css",
     "main.js": "/STApp/static/js/main.18ae4a2a.js",
     "static/js/787.8325cdb6.chunk.js": "/STApp/static/js/787.8325cdb6.chunk.js",
     "static/media/10.jpg": "/STApp/static/media/10.7bd04acb4ae11f107a2c.jpg",
@@ -19,12 +19,12 @@
     "static/media/Kingthings_Petrock.ttf": "/STApp/static/media/Kingthings_Petrock.1aafdcc764fd143923c0.ttf",
     "static/media/8.jpg": "/STApp/static/media/8.6232b82a375765f1e194.jpg",
     "index.html": "/STApp/index.html",
-    "main.bc936868.css.map": "/STApp/static/css/main.bc936868.css.map",
+    "main.dd8e30c2.css.map": "/STApp/static/css/main.dd8e30c2.css.map",
     "main.18ae4a2a.js.map": "/STApp/static/js/main.18ae4a2a.js.map",
     "787.8325cdb6.chunk.js.map": "/STApp/static/js/787.8325cdb6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc936868.css",
+    "static/css/main.dd8e30c2.css",
     "static/js/main.18ae4a2a.js"
   ]
 }
