@@ -1,14 +1,16 @@
 {
   "files": {
-    "main.css": "/STApp/static/css/main.dd8e30c2.css",
+    "main.css": "/STApp/static/css/main.d8fd6070.css",
     "main.js": "/STApp/static/js/main.18ae4a2a.js",
     "static/js/787.8325cdb6.chunk.js": "/STApp/static/js/787.8325cdb6.chunk.js",
+    "static/media/tlo-tyl1-czarne.png": "/STApp/static/media/tlo-tyl1-czarne.be57e80f39b382fe1be1.png",
     "static/media/10.jpg": "/STApp/static/media/10.7bd04acb4ae11f107a2c.jpg",
     "static/media/12.jpg": "/STApp/static/media/12.7ee9ed9d09f16b9fe0bc.jpg",
     "static/media/13.jpg": "/STApp/static/media/13.d695289b1215a96480cb.jpg",
     "static/media/1.jpg": "/STApp/static/media/1.8ed8ec8fdd75c57f7d49.jpg",
     "static/media/2.jpeg": "/STApp/static/media/2.3ac2b2a2342a51f53079.jpeg",
     "static/media/5.jpg": "/STApp/static/media/5.12a4d706a439aaf69c8b.jpg",
+    "static/media/tlo-strona2.png": "/STApp/static/media/tlo-strona2.bf7cb1935b78fdf73072.png",
     "static/media/4.jpeg": "/STApp/static/media/4.2f6bbbee69bc090deeaa.jpeg",
     "static/media/11.jpg": "/STApp/static/media/11.00ba09ea1b69e924dfa6.jpg",
     "static/media/borrdersWideCorner.png": "/STApp/static/media/borrdersWideCorner.f5ff7712b71935d48bfa.png",
@@ -19,12 +21,12 @@
     "static/media/Kingthings_Petrock.ttf": "/STApp/static/media/Kingthings_Petrock.1aafdcc764fd143923c0.ttf",
     "static/media/8.jpg": "/STApp/static/media/8.6232b82a375765f1e194.jpg",
     "index.html": "/STApp/index.html",
-    "main.dd8e30c2.css.map": "/STApp/static/css/main.dd8e30c2.css.map",
+    "main.d8fd6070.css.map": "/STApp/static/css/main.d8fd6070.css.map",
     "main.18ae4a2a.js.map": "/STApp/static/js/main.18ae4a2a.js.map",
     "787.8325cdb6.chunk.js.map": "/STApp/static/js/787.8325cdb6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd8e30c2.css",
+    "static/css/main.d8fd6070.css",
     "static/js/main.18ae4a2a.js"
   ]
 }
