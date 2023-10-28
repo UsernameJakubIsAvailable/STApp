@@ -1,0 +1,39 @@
+main{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; 
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    ". articleArea ."
+    ". subpageButtons ."; }
+
+.activeTenArticle{
+    grid-area: articleArea ;
+}
+.subpagesList{
+    grid-area:subpageButtons;
+    display: flex;
+    justify-content: center;
+    gap: 2ch;
+    overflow: auto;
+    flex: 1;
+}
+.subpagesLink{
+    width: max-content;
+    height: max-content;
+    background-color: pink;
+}
+.subpagesLink > a{
+        font-size: 1rem;
+        display: block;
+        padding: 1rem;
+}
+
+.newsArticleHiddenButton , .newsArticleVisableButton{
+    height: 100px;
+    width: 100%;
+    background-color: pink;
+}
+.news{
+    max-height: 500px;
+    overflow: hidden;
+}
