@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/STApp/static/css/main.8b20d5bb.css",
+    "main.css": "/STApp/static/css/main.b8da9993.css",
     "main.js": "/STApp/static/js/main.15b92bb5.js",
     "static/js/787.8325cdb6.chunk.js": "/STApp/static/js/787.8325cdb6.chunk.js",
     "static/media/tlo-tyl1-czarne.png": "/STApp/static/media/tlo-tyl1-czarne.be57e80f39b382fe1be1.png",
     "static/media/10.jpg": "/STApp/static/media/10.7bd04acb4ae11f107a2c.jpg",
     "static/media/12.jpg": "/STApp/static/media/12.7ee9ed9d09f16b9fe0bc.jpg",
-    "static/media/BBxEfect2.png": "/STApp/static/media/BBxEfect2.7595e1ac4f71f583277d.png",
+    "static/media/STTXTBorder.png": "/STApp/static/media/STTXTBorder.7595e1ac4f71f583277d.png",
     "static/media/13.jpg": "/STApp/static/media/13.d695289b1215a96480cb.jpg",
     "static/media/1.jpg": "/STApp/static/media/1.8ed8ec8fdd75c57f7d49.jpg",
     "static/media/2.jpeg": "/STApp/static/media/2.3ac2b2a2342a51f53079.jpeg",
@@ -14,7 +14,7 @@
     "static/media/MobileBackground.png": "/STApp/static/media/MobileBackground.22e8050b127f66e4bfe4.png",
     "static/media/4.jpeg": "/STApp/static/media/4.2f6bbbee69bc090deeaa.jpeg",
     "static/media/11.jpg": "/STApp/static/media/11.00ba09ea1b69e924dfa6.jpg",
-    "static/media/tlox11.png": "/STApp/static/media/tlox11.e31cc3f4016b30d7d0d8.png",
+    "static/media/STBTXTBackgorund.png": "/STApp/static/media/STBTXTBackgorund.e31cc3f4016b30d7d0d8.png",
     "static/media/Logo.png": "/STApp/static/media/Logo.96eba078e4bc6bb79fb6.png",
     "static/media/listki.png": "/STApp/static/media/listki.628700f938cb2c6d4235.png",
     "static/media/TformST.png": "/STApp/static/media/TformST.a7821e5c445b8bee5fd0.png",
@@ -26,12 +26,12 @@
     "static/media/8.jpg": "/STApp/static/media/8.6232b82a375765f1e194.jpg",
     "static/media/SfromST.png": "/STApp/static/media/SfromST.2b5c249c5858907cb7eb.png",
     "index.html": "/STApp/index.html",
-    "main.8b20d5bb.css.map": "/STApp/static/css/main.8b20d5bb.css.map",
+    "main.b8da9993.css.map": "/STApp/static/css/main.b8da9993.css.map",
     "main.15b92bb5.js.map": "/STApp/static/js/main.15b92bb5.js.map",
     "787.8325cdb6.chunk.js.map": "/STApp/static/js/787.8325cdb6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8b20d5bb.css",
+    "static/css/main.b8da9993.css",
     "static/js/main.15b92bb5.js"
   ]
 }
