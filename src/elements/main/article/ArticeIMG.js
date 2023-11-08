@@ -1,7 +1,7 @@
 function ArticeIMG(props){
 
     return(
-        <img className="articleIMG figureIMG" src={props.imgSrc} alt="news"/>
+        <img loading="lazy" className="articleIMG figureIMG" src={props.imgSrc} alt="news"/>
 
     )
 

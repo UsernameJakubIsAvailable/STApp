@@ -37,11 +37,6 @@
 ::-webkit-scrollbar-track:horizontal {
     background-image: url('../../../public/multimedia/scroll&border/scrollBackgroundHorizontal.png');
 }
-.websiteNav::-webkit-scrollbar-track {
-    background-image: none;
-   background-color: rgba(255, 235, 205, 0.37);
-   border-radius: 10px;
-}
 ::-webkit-scrollbar-button {
     height: 21px;
     border-radius: 5px;

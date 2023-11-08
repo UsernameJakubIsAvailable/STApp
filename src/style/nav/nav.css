@@ -1,24 +1,29 @@
-nav{
-    background-color: white;
+.swordIcon{
+    width: 40px;
+    opacity: 1;
+    transition: opacity , transform 1s ease;
 }
-.showAndHideNavButton{
-    position: fixed;
-    width: 1ch;
-    height: 100%;
-    padding: 0 2ch 0 1ch;
-    background-color: pink;
-    color: black;
-    top: 0;
-    left: 0;
+.swordITop.closeNav{
+    transform: translate(-0% , 100%)  rotate(-45deg);
+}
+.swordIMid{
+    transform: rotate(180deg);
+}
+.swordIMid.closeNav{
+    transform: translate(50% , 0) rotate(90deg);
+}
+.swordIBot.closeNav{
+    transform: translate(-0% , -100%) rotate(45deg) ;
 }
 .websiteNav{
-    height: calc(100%);
+    margin-top: 5px;
+    height: calc(100% - 10px);
     width: calc(100% + 4px);
-    overflow-y: auto;
+    overflow-y: auto;   
     scrollbar-gutter: stable;
 }
 .navElement{
-    border-left: 1ch solid ;
+    border-left: 1ch solid ;    
     border-radius: 1.3rem ;
     padding-left: 1ch;
 }
@@ -43,7 +48,7 @@ nav{
 }
 .arrow{
     height: 1rem;
-    margin-right: 20px;
+    margin-right: 2px;
 }
 .search{
     margin-bottom: 0.5rem;
@@ -52,6 +57,7 @@ nav{
     height: 2rem;
     width: 50%;
     padding: 0.1rem;
+    background-color: rgba(255, 235, 205, 0.452);
 }
 .search>a{
     display: inline-block;

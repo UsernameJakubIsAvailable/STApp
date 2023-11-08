@@ -31,9 +31,8 @@ const fittingArticle = allNewsList.filter(data=>paragrafChecking(data));
  }
 
     return (
-      <main>
+      <main className={props.ver}>
         <Routes>
-
             {createTenArticleRouts('News', allNewsList).map(route=>route)}
             {createTenArticleRouts('Szukaj', fittingArticle).map(route=>route)}
 

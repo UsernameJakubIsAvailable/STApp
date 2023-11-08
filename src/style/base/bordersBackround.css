@@ -1,0 +1,47 @@
+nav, main {
+    border-image-source: 
+    url('../../../public/multimedia/malaRamkaTest1.png');
+    border-image-repeat: round;
+    border-image-slice: 34 ;
+    border-image-width: 25px ;
+    border-image-outset: 13px;
+    padding: 20px;
+     }
+main{
+    background-image:
+    url('../../../public/multimedia/tloEli1b_Botv1TT.png'),
+    url('../../../public/multimedia/tloEli1b_Topv1TT.png'),  
+    url('../../../public/multimedia/tloEli1b_MidvT.png');  
+    background-repeat: 
+     no-repeat, 
+     no-repeat, 
+     round;
+    background-position:
+    bottom,
+    top,
+    center 270px;
+    background-size: 
+    100% 270px,
+    100% 270px,
+    100% 820px; 
+}   
+/* nav{
+   background-repeat: 
+   no-repeat, 
+   no-repeat, 
+   no-repeat;
+   background-position:
+   bottom,
+   top,
+   0 135px;
+   background-size: 
+   100% 135px,
+   100% 135px,
+   100% calc(100% - 260px);
+} */
+nav{
+    background-image: url('../../../public/multimedia/navBackground.png');
+    background-size: 102% 102% ;
+    background-repeat: repeat no-repeat;
+    background-position: center;
+}   

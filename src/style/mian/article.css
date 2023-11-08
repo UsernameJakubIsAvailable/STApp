@@ -13,12 +13,10 @@ article{
     display: flex;
     justify-content: space-between;
 }
-.titleAndDate>p{
+.articleTitle , .titleAndDate>p{
     font-size: 1rem;
 }
-.articleTitle{
-    font-size: 1.7rem;
-}
+
 .ornamentLetter{
     float: left;
     height: 5.4rem;
@@ -27,7 +25,6 @@ article{
 .articleIMG{
     display: block;
     max-width: 100%;
-    font-size: 1rem;
     font-style: oblique;
     text-align: center;
     margin: 1rem auto;

@@ -1,9 +1,0 @@
-header, nav, main {
-    border-style: solid;
-    border-image-source: url('../../../public/multimedia/scroll&border/borrdersWideCorner.png');
-    border-image-repeat: repeat;
-    border-image-slice: 46;
-    border-image-width: 55px;
-    border-image-outset: 20px; 
-    padding: 25px;
-}

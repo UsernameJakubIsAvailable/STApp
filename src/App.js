@@ -8,7 +8,18 @@ import { useState } from 'react';
 
 
 function App() {
-  const [searchValue, setSearchValue] = useState()
+  const [searchValue, setSearchValue] = useState('')
+  
+//test 
+  const [backgroundVersion , setBackgroundVersion] = useState('')
+
+  const backgroundVersions = ['1','2','3']
+
+  const handleBackgroundChange = (version)=>{
+    setBackgroundVersion('ver' + version)
+  }
+//testEnd
+
   const handleValueChange = (e)=>{
     setSearchValue(e.target.value)
     }
@@ -16,9 +27,35 @@ function App() {
     <>
       <BrowserRouter>
       <Header/>
-      <Nav handleValueChange={handleValueChange} searchValue={searchValue}/>
-      <Main searchValue={searchValue}/>
+      <Nav ver={backgroundVersion} handleValueChange={handleValueChange} searchValue={searchValue}/>
+      <Main ver={backgroundVersion} searchValue={searchValue}/>
       </BrowserRouter>
+
+{/* test */}
+      <div style={{
+        top:'calc(100% - 50px)',
+        width:'100%',
+        height:'50px',
+        backgroundColor:'black',
+        position: 'fixed',
+        display:'none',
+        gap:'5px',
+        opacity:'0.5'
+        }}>
+
+      {backgroundVersions.map(ver =><button key={ver} style={{
+            width:'33%',
+            backgroundColor:'grey',
+            padding:'2em'
+        }}
+        onClick={()=>handleBackgroundChange(ver)}
+        >
+          {ver}
+        </button>)}
+
+      </div>
+{/* testEnd */}
+
     </>
   );
 }
