@@ -1,31 +1,40 @@
+@import url("./style/variables.css");
+@import url("./style/base/base.css");
+@import url("/src/style/base/scroll.css");
+@import url("./style/base/bordersBackround.css");
+@import url("./style/layout/layout.css");
+@import url("./style/header/header.css");
+@import url("./style/nav/nav.css");
+@import url("./style/mian/mian.css");
+@import url("./style/mian/article.css");
 
-@import url('./style/base/base.css');
-@import url('/src/style/base/scroll.css');
-@import url('./style/base/bordersBackround.css');
-@import url('./style/layout/layout.css');
-@import url('./style/header/header.css');
-@import url('./style/nav/nav.css');
-@import url('./style/mian/mian.css');
-@import url('./style/mian/article.css');
-
-
-nav.ver2{
-    background-image: url('../public/multimedia/tests/a1ElaBackgroundNav.png');
-}
-main.ver2{
-    background-image: url('../public/multimedia/tests/a1ElaBackgroundMainD.png'),url('../public/multimedia/tests/a1ElaBackgroundMain.png'),url('../public/multimedia/tests/a1ElaBackgroundMainD.png');
+.xxx {
+  display: inline-block;
 }
 
-nav.ver3{
-    background-image: url('../public/multimedia/tests/b1ElaBackgroundNav.png');
+nav.ver2 {
+  background-image: url("../public/multimedia/tests/a1ElaBackgroundNav.png");
 }
-main.ver3{
-    background-image: url('../public/multimedia/tests/b1ElaBackgroundMainD.png'),url('../public/multimedia/tests/b1ElaBackgroundMain.png'),url('../public/multimedia/tests/b1ElaBackgroundMainD.png');
+main.ver2 {
+  background-image: url("../public/multimedia/tests/a1ElaBackgroundMainD.png"),
+    url("../public/multimedia/tests/a1ElaBackgroundMain.png"),
+    url("../public/multimedia/tests/a1ElaBackgroundMainD.png");
 }
 
-nav.ver1{
-    background-image: url('../public/multimedia/tests/c1ElaBackgroundNav.png');
+nav.ver3 {
+  background-image: url("../public/multimedia/tests/b1ElaBackgroundNav.png");
 }
-main.ver1{
-    background-image: url('../public/multimedia/tests/c1ElaBackgroundMainD.png'),  url('../public/multimedia/tests/c1ElaBackgroundMain.png') ,  url('../public/multimedia/tests/c1ElaBackgroundMainD.png');
+main.ver3 {
+  background-image: url("../public/multimedia/tests/b1ElaBackgroundMainD.png"),
+    url("../public/multimedia/tests/b1ElaBackgroundMain.png"),
+    url("../public/multimedia/tests/b1ElaBackgroundMainD.png");
+}
+
+nav.ver1 {
+  background-image: url("../public/multimedia/tests/c1ElaBackgroundNav.png");
+}
+main.ver1 {
+  background-image: url("../public/multimedia/tests/c1ElaBackgroundMainD.png"),
+    url("../public/multimedia/tests/c1ElaBackgroundMain.png"),
+    url("../public/multimedia/tests/c1ElaBackgroundMainD.png");
 }

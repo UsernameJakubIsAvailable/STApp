@@ -1,109 +1,145 @@
-#root{
-    width: 100%;
-    min-height: 100vh;
-    padding-bottom: 6vh;
-    display: grid; 
-    grid-template-columns: 1fr 20em 25em 25em 1fr; 
-    grid-template-rows: 200px auto ; 
-    gap: 0 2.5em;
-    background-image: url('../../../public/multimedia/tlo-tyl1-czarne.png');
-    background-attachment: fixed;
+#root {
+  width: 100%;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr repeat(3, 25rem) 1fr;
+  grid-template-rows: 20rem auto;
+  gap: 0 3em;
+  z-index: 1;
+  padding-bottom: 2rem;
 }
-.showAndHideNavButton , .letterContein{
-    display: none;
+#root::before {
+  content: "";
+  background-image: url("../../../public/multimedia/tlo-tyl1-czarne.png");
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
-header{
-    grid-area: 1 / 2 / 2 / 5 ; 
-    position: relative;
-} 
-nav{
-    position: sticky;
-    grid-area: 2 / 2 / 3 / 3;
-    position: -webkit-sticky;
-    top:5vh;
-    height: 90vh;
+.showAndHideNavButton,
+.letterContein {
+  display: none;
 }
-main{
-    grid-area: 2 / 3 / 3 / 5;   
+header {
+  grid-area: 1 / 2 / 2 / 5;
+  position: relative;
 }
-@media (max-width: 90rem){
-    #root{
-        grid-template: 200px auto / 1fr repeat(3 , 15rem) 1fr; ; 
-    }
+nav {
+  position: sticky;
+  grid-area: 2 / 2 / 3 / 3;
+  position: -webkit-sticky;
+  top: 5vh;
+  height: 90vh;
+}
+main {
+  grid-area: 2 / 3 / 3 / 5;
+}
+@media (max-width: 90rem) {
+  #root {
+    grid-template: 200px auto / 1fr repeat(3, 16em) 1fr;
+    gap: 0 1em;
+    --font-S: 1.4rem;
+  }
 }
 
-@media (max-width: calc(50rem + 60px)){
-    #root{
-        grid-template: 150px auto / 1fr 10rem 10rem 10rem 1fr; ; 
-        min-width: min-content;
-        position: relative;
-    }
-    nav{
-        height: calc(100vh - 6rem);
-        width: 350px;
-        top: 5rem;
-        position: fixed;
-        padding-left: 40px;
-        left: -500px;
-        z-index: 2;
-        transition: transform 1s ease;
-    }
-    .hiddenNav{
-        transform: translate(500px);
-    }
-    main {
-        grid-area: 2 / 2 / 3 / 5;
-    }
-    header{
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 5rem;
-        background-color: #ffd770;
-        background-size:100vw 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 19%;
-    }  
-    .letterContein{
-        display: block;
-    }
-    .showAndHideNavButton{
-    display: block;
-    position: absolute;
-    width: 100vw;
-    height: 90px;
-    border-radius: 50%;
-    z-index: 5;
-    display: block;
-    height: 5rem;
-    top: -5rem;
-    left: 500px;
-    font-size: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    padding-left: 15vw;
+@media (max-width: calc(50rem + 60px)) {
+  #root {
+    grid-template: 150px auto / 1fr 10rem 10rem 10rem 1fr;
+    min-width: min-content;
+    position: relative;
+    --font-S: 1.2rem;
+  }
+  nav {
+    grid-area: 1/1/2/2;
+    top: 0;
+    height: 100dvh;
+    width: 350px;
+    max-width: 100vw;
+    position: fixed;
+    padding-left: 40px;
+    left: -500px;
+    z-index: 2;
     transition: transform 1s ease;
-    }
-    .showAndHideNavButton.closeNav{
-        transform: translate(-500px);
-    }
-}
-@media (max-width: 40em) {
-    #root{
-        grid-template: 150px auto / 1fr 90% 1fr; 
-        gap: 0;
-    }
-    main {
-        grid-area: 2 / 2 / 3 / 3
-    }
   }
 
-
-
-
-
+  .hiddenNav {
+    transform: translate(500px);
+  }
+  #root:has(nav > .showAndHideNavButton.closeNav) > main::after {
+    position: fixed;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000066;
+    left: 0;
+    top: 0;
+  }
+  main {
+    grid-area: 2 / 2 / 3 / 5;
+  }
+  .letterContein {
+    display: block;
+  }
+  .showAndHideNavButton {
+    position: absolute;
+    z-index: 3;
+    height: 5rem;
+    left: 500px;
+    /* left: calc(100%); */
+    display: flex;
+    transition: transform 1s ease;
+    & > div {
+      /* left: 1rem;
+      position: absolute; */
+      height: calc(var(--font-S) * 3);
+      width: calc(var(--font-S) * 3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* background-color: #d3c18d;
+      &:before,
+      &:after {
+        content: "";
+        border-radius: 0;
+        border-top-right-radius: 100% 100%;
+        border-bottom-right-radius: 125% 100%;
+        width: 50px;
+        height: 50px;
+        transform-origin: bottom left;
+        transform: scale(1, 1) translateX(35px) rotate(-27.5deg);
+        position: absolute;
+        top: 20px;
+        left: 0;
+        background-color: #d3c18d;
+        z-index: -1;
+      }
+      &::after {
+        transform: scale(-1, 1) translateX(-35px) rotate(-27.5deg);
+      } */
+      background-color: #d3c18d99;
+      border-radius: 50%;
+      border: #73383e solid 3px;
+    }
+  }
+  .showAndHideNavButton.closeNav {
+    transform: translate(-150px);
+  }
+}
+@media (max-width: 40em) {
+  #root {
+    grid-template: 150px auto / 1fr 90% 1fr;
+    gap: 0;
+    --font-S: 1rem;
+    & > .myCustomScroll {
+      grid-area: 1/2/3/3;
+    }
+  }
+  main {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .showAndHideNavButton.closeNav {
+    transform: translate(-500px);
+  }
+}

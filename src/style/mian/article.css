@@ -1,31 +1,74 @@
-.mainArticle{
-    max-width: 60ch;
+.mainArticle {
+  max-width: 60ch;
+  position: relative;
+  grid-area: 2/2/3/3;
+}
+.mainArticle > p:not(:has(img)) {
+  text-indent: 0.8em;
+}
+article {
+  font-size: var(--font-S);
+  text-align: justify;
+}
+.titleAndDate {
+  display: grid;
+  grid-template: auto / 1fr 5fr max-content;
+  justify-content: space-between;
+  margin: 10px 0;
+  text-align: center;
+}
+.articleTitle {
+  grid-area: 1/2/2/3;
+  justify-self: stretch;
+  font-size: calc(var(--font-S) + 0.2rem);
+  line-height: calc(var(--font-S) + 1rem);
+  color: #73383e;
+  width: 100%;
+  text-align: center;
+}
+.articleTitle {
+  background-image: url("../../elements/multimedia/titleUnderline.png");
+  background-repeat: no-repeat;
+  background-size: auto cover;
+  background-position: 0 100%;
+}
+.articleLi::after {
+  content: url("../../elements/multimedia/break-pomiedzy-newsami.png");
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.titleAndDate > p {
+  grid-area: 1/3/2/4;
+  text-align: right;
+  font-size: calc(var(--font-S) - 0.2rem);
+  color: #73383e;
+  white-space: pre-line;
+  align-self: center;
+}
+.ornamentLetter {
+  float: left;
+  height: 5.4rem;
+  margin-right: 0.3rem;
+}
+.articleIMG {
+  display: block;
+  max-width: 100%;
+  font-style: oblique;
+  text-align: center;
+  margin: 1rem auto;
+}
+.newsArticleHiddenShowButton {
+  width: 100%;
+  height: 2rem;
+  justify-content: end;
+  & > img {
+    padding-left: 3ch;
+  }
 }
 
-article{
-    font-size: 1.6rem;
-    text-align: justify;
-}
-.titleAndDate{
-    margin: 10px 0;
-    text-align: center;
-    background-color: pink;
-    display: flex;
-    justify-content: space-between;
-}
-.articleTitle , .titleAndDate>p{
-    font-size: 1rem;
-}
-
-.ornamentLetter{
-    float: left;
-    height: 5.4rem;
-    margin-right: 0.3rem;
-}
-.articleIMG{
-    display: block;
-    max-width: 100%;
-    font-style: oblique;
-    text-align: center;
-    margin: 1rem auto;
+.codeElement {
+  width: 100%;
+  padding: 0 10%;
 }

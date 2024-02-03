@@ -1,30 +1,52 @@
-import { useState } from "react"
-import Article from "./Article"
+import { useRef, useState } from "react";
+import Article from "./Article";
+import strzalka from "../../multimedia/strzalka.png";
 
-function ArticleNews(props){
+function ArticleNews(props) {
+  const [hidden, setHidden] = useState(true);
+  const newDataRef = useRef([]);
+  const isToLong = useRef(0);
+  const handleArticleVisibility = () => {
+    setHidden(!hidden);
+  };
 
-    const [hidden , setHidden] =useState(true)
+  const wrapIsLongerThen = 920;
 
-    const handleArticleVisibility = ()=>{
-        setHidden(!hidden)
-    }
-    const handleOnResize = (e)=>{
-        console.log(e)
-    }
-    const countingLetter = ()=>{
-        let count = 0;
-        props.data.forEach(info=>{count+=info.context.length});
-        count = count>900;
-        return count
-    }
-    const countLetter = countingLetter()
-    return(
-        <>
-        {countingLetter()}
-         <Article onResize={handleOnResize} news={countLetter ? hidden : null} data={props.data}/>
-         {countLetter ? <button className={hidden?'newsArticleHiddenButton':'newsArticleVisableButton'} onClick={()=>handleArticleVisibility()}>{hidden?'Pokaż Więcej':'Zwiń'}</button> : null}
-        </>
-    )
+  const countingLetter = () => {
+    let count = 0;
+    let maxCharacters = 0;
+    const newData = [];
 
+    props.data.forEach((paragraf) => {
+      if (count < wrapIsLongerThen) {
+        count += paragraf.context.length;
+        if (count < wrapIsLongerThen) {
+          maxCharacters = count;
+          newData.push(paragraf);
+        }
+      }
+    });
+    isToLong.current = maxCharacters !== count;
+    newDataRef.current = newData;
+
+    return count;
+  };
+  countingLetter();
+
+  const data = hidden ? newDataRef.current : props.data;
+  return (
+    <>
+      <Article news={hidden ? "news hiddenNews" : "news"} data={data} />
+      {isToLong.current ? (
+        <button
+          className="newsArticleHiddenShowButton"
+          onClick={() => handleArticleVisibility()}
+        >
+          {hidden ? "Czytaj Dalej" : "Zwiń"}
+          <img alt="pokaz wiecej" src={strzalka} />
+        </button>
+      ) : null}
+    </>
+  );
 }
-export default ArticleNews
+export default ArticleNews;

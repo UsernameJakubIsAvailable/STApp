@@ -1,5 +1,6 @@
 import { useState } from "react";
-import strzalka from '../multimedia/strzalka.png'
+import dot from '../multimedia/kropka.png'
+
 
 function TestElement(props) {
 
@@ -12,8 +13,8 @@ function TestElement(props) {
   return (
    <li key={props.name} className="navElement navElementRedBorder">
         <button className='visableSectionButton' onClick={()=>handleVisableSection()}>
+        <img className='dot' alt='ozdobik' src={dot}/> 
                 {props.name}
-                <img className='arrow' style={visableSection?{transform:'rotate(180deg)'}:{ transform:'rotate(90deg)'}} alt='strzalka' src={strzalka}></img>
         </button>
         <ul style={visableSection?{display:'none'}:null}>
             {props.data.map(element=>props.creteElements(element , farherName))}

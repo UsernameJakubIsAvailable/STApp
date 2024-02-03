@@ -5,8 +5,8 @@ function FirsParagraf(props) {
 
     return(<p>
         <OrnamentLetter letter={props.firstParagraf.slice(0, 1).toUpperCase() }/>
-        {props.firstParagraf.slice(1,props.firstParagraf.length)
-}
+        {props.firstParagraf.slice(1,props.firstParagraf.length)}
+        {props.newsArticleLastItemButton}
     </p>)
     
 }

@@ -1,39 +1,48 @@
-main{
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; 
-    grid-template-rows: auto auto;
-    grid-template-areas: 
+main {
+  display: grid;
+  grid-template-columns: minmax(4ch, 1fr) auto minmax(4ch, 1fr);
+  grid-template-rows: 1rem auto 4rem 2rem;
+  grid-template-areas:
+    ". . ."
     ". articleArea ."
-    ". subpageButtons ."; }
-
-.activeTenArticle{
-    grid-area: articleArea ;
+    ". subpageButtons ."
+    ". . .";
 }
-.subpagesList{
-    grid-area:subpageButtons;
-    display: flex;
-    justify-content: center;
-    gap: 2ch;
-    overflow: auto;
-    flex: 1;
+.backButton {
+  grid-area: 3/2/3/3;
+  color: #73383e;
+  font-size: var(--font-S);
+  & > img {
+    padding-left: 2ch;
+    transform: rotate(180deg);
+  }
 }
-.subpagesLink{
-    width: max-content;
-    height: max-content;
-    background-color: pink;
+.activeTenArticle {
+  grid-area: articleArea;
 }
-.subpagesLink > a{
-        font-size: 1rem;
-        display: block;
-        padding: 1rem;
+.subpagesList {
+  grid-area: subpageButtons;
+  display: flex;
+  justify-content: center;
+  gap: 2ch;
+  overflow: auto;
+  flex: 1;
 }
-
-.newsArticleHiddenButton , .newsArticleVisableButton{
-    height: 100px;
-    width: 100%;
-    background-color: pink;
+.subpagesLink {
+  width: max-content;
+  height: max-content;
 }
-.news{
-    max-height: 500px;
-    overflow: hidden;
+.subpagesLink > a {
+  font-size: calc(var(--font-S) / 2);
+  display: block;
+  padding: calc(var(--font-S) / 2);
+}
+.nextSubpages > a,
+.prevSubpages > a {
+  padding: calc(var(--font-S) / 2);
+  display: block;
+  align-items: center;
+}
+.prevSubpages {
+  transform: rotate(180deg);
 }

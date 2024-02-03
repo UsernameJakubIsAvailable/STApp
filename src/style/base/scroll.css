@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 1ch;
     height: 1ch;
  }
@@ -63,4 +63,87 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
         scrollbar-width: normal;
     }
 }
+} */
+
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#root {
+  overflow: scroll;
+  & > .myCustomScroll {
+    overflow: hidden;
+    grid-area: 1/4/3/5;
+    position: sticky;
+    position: -webkit-sticky;
+    flex-direction: column;
+    width: 50px;
+    justify-self: end;
+    align-items: center;
+    left: 0;
+    top: 0;
+    & > .scrollTumb {
+      top: 25rem;
+      height: calc(100% - 25rem);
+      position: relative;
+      & > div {
+        top: calc(var(--font-S) * 1.7 / 2 * -1);
+        position: absolute;
+        width: max-content;
+        right: 0;
+        height: max-content;
+        & > img {
+          height: calc(var(--font-S) * 1.7);
+        }
+      }
+    }
+    * {
+      -webkit-user-drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+  }
+}
+#websiteNav {
+  display: grid;
+  & > #websieNavUl {
+    grid-area: 1/1;
+  }
+  & > .myCustomScroll {
+    grid-area: 1/1;
+    position: sticky;
+    position: -webkit-sticky;
+    width: 1ch;
+    justify-self: end;
+    align-items: center;
+    padding: 50px 0;
+    top: 0;
+    left: 0;
+    & > .scrollTumb {
+      position: relative;
+      height: 100%;
+      & > div {
+        top: calc(var(--font-S) * 1.7 / 2 * -1);
+        position: absolute;
+        width: max-content;
+        right: 0;
+        height: max-content;
+        & > img {
+          height: calc(var(--font-S) * 1.7);
+        }
+      }
+    }
+    * {
+      -webkit-user-drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+  }
 }
