@@ -9,16 +9,12 @@ function Pages(props) {
   const [content, setContent] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    console.log("y");
-
     setIsLoaded(false);
     fetch(
       `${API_BASE_URL}/api/podstronies?populate[dynamic][populate][article][populate][image][fields][0]=url&populate[dynamic][populate][ImageAndDescryption][populate][image][fields][0]=url&filters[sciezka][$eq]=${props.path}`
     )
       .then((res) => res.json())
       .then((fetchetData) => {
-        console.log("y");
-
         const transData = [];
         fetchetData.data[0].attributes.dynamic.map((element, index) => {
           transData.push([]);

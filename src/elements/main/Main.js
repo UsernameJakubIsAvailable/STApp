@@ -110,6 +110,7 @@ function Main(props) {
     <main id="mainContent">
       <Routes>
         <Route path="/" element={<TenArticle />} />
+        {/* news^ */}
         {props.tab && props.tab.map((item) => createPageRouts(item)).flat()}
         {newsRout &&
           newsRout.map((item) => (
