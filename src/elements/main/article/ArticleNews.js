@@ -18,11 +18,16 @@ function ArticleNews(props) {
     const newData = [];
 
     props.data.forEach((paragraf) => {
-      if (count < wrapIsLongerThen) {
+      if (paragraf.context && count < wrapIsLongerThen) {
         count += paragraf.context.length;
         if (count < wrapIsLongerThen) {
           maxCharacters = count;
           newData.push(paragraf);
+        } else {
+          newData.push({
+            type: paragraf.type,
+            context: paragraf.context.slice(0, count - wrapIsLongerThen),
+          });
         }
       }
     });

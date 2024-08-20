@@ -1,11 +1,27 @@
 import ArticleNews from "./ArticleNews";
-import { Link } from "react-router-dom";
 import arrow from "../../multimedia/strzalka.png";
+import { useEffect, useState } from "react";
+import API_BASE_URL from "../../../fetch/API_BASE_URL";
+import transDataNews from "../../../fetch/transData/transDataNews";
 
 function TenArticle(props) {
+  const [article, setArticle] = useState(false);
+  const [currentpage, setCurrentpage] = useState(1);
+  const [totalNewsAmount, setTotalNewsAmount] = useState(0);
+  useEffect(() => {
+    fetch(
+      `${API_BASE_URL}/api/wiescis?populate[wiesc][populate][image][populate]=true&populate[wiesc][populate][image][fields][0]=url&pagination[page]=${currentpage}&pagination[pageSize]=10&sort[0]=id:desc`
+    )
+      .then((res) => res.json())
+      .then((fetchetData) => {
+        setTotalNewsAmount(fetchetData.meta.pagination.total);
+        setArticle(transDataNews(fetchetData, API_BASE_URL));
+      });
+  }, [currentpage]);
+
   const createList = (article) => {
     return (
-      <li className="articleLi" key={article[0].context + "x"}>
+      <li className="articleLi" key={article[0].context}>
         {" "}
         <ArticleNews data={article} />
       </li>
@@ -13,67 +29,54 @@ function TenArticle(props) {
   };
   const createSubpagesList = () => {
     const subPageList = [];
-    for (let i = 0; i < props.suppageListCount - 1; i++) {
+    for (let i = 1; i < Math.ceil(totalNewsAmount / 10) + 1; i++) {
       subPageList.push(
-        <li className={"subpagesLink"} key={`${props.pathName + i}`}>
+        <li className={"subpagesLink"} key={`sub${i}`}>
           {" "}
-          <Link
-            to={`/${props.pathName + (i + 1)}`}
+          <button
             onClick={() => {
               document.getElementById("root").scrollTo(0, 0);
+              setCurrentpage(i);
             }}
           >
-            {i + 1}
-          </Link>
+            {i}
+          </button>
         </li>
       );
     }
     return subPageList;
   };
-  const getUrl = () => {
-    let url = window.location.href[window.location.href.length - 1];
-
-    if (url === "/") {
-      url = 1;
-    } else {
-      url = +url;
-    }
-
-    return url;
-  };
-  const url = getUrl();
-
   return (
     <>
-      <ul id="mainScrolledChild" className="activeTenArticle">
-        {props.tenArticle.map((article) => createList(article))}
+      <ul id="mainScrolledChild" className="activeArticle">
+        {article && article.map((article) => createList(article))}
       </ul>
       <ul className="subpagesList">
-        {url !== 1 ? (
+        {currentpage !== 1 ? (
           <li className="prevSubpages">
-            <Link
+            <button
               onClick={() => {
                 document.getElementById("root").scrollTo(0, 0);
+                setCurrentpage(currentpage - 1);
               }}
-              to={`/News${url - 1}`}
             >
               <img alt="poprzednia strona" src={arrow} />
-            </Link>
+            </button>
           </li>
         ) : null}
 
         {createSubpagesList().map((link) => link)}
 
-        {url !== 2 ? (
-          <li
-            onClick={() => {
-              document.getElementById("root").scrollTo(0, 0);
-            }}
-            className="nextSubpages"
-          >
-            <Link to={`/News${url + 1}`}>
-              <img alt="poprzednia strona" src={arrow} />
-            </Link>
+        {currentpage !== Math.ceil(totalNewsAmount / 10) ? (
+          <li>
+            <button
+              onClick={() => {
+                document.getElementById("root").scrollTo(0, 0);
+                setCurrentpage(currentpage + 1);
+              }}
+            >
+              <img alt="nastepna strona" src={arrow} />
+            </button>
           </li>
         ) : null}
       </ul>

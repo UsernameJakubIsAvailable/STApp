@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 function TitleNews(props) {
+  // const scorllTop = () => {
+  //   document.getElementById("articleLi").scrollTo(0, 0);
+  // };
   return (
     <section className="titleAndDate">
       <Link className="articleTitle" to={"/" + props.title}>

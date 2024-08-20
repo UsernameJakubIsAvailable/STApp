@@ -6,16 +6,14 @@ function ShowAndHideNavButton(props) {
     <button
       className={
         props.showOrHideNavbar
-          ? `showAndHideNavButton closeNav`
+          ? `showAndHideNavButton close`
           : "showAndHideNavButton"
       }
       onClick={() => props.handleShowAndHideNavButton()}
     >
       <div
         className={
-          props.showOrHideNavbar
-            ? "circle closeNav swordIcon"
-            : "swordIcon circle"
+          props.showOrHideNavbar ? "circle close swordIcon" : "swordIcon circle"
         }
       >
         <img
@@ -23,7 +21,7 @@ function ShowAndHideNavButton(props) {
           alt="swordIcon"
           className={
             props.showOrHideNavbar
-              ? `swordIcon swordITop closeNav`
+              ? `swordIcon swordITop close`
               : "swordIcon swordITop"
           }
         />
@@ -32,7 +30,7 @@ function ShowAndHideNavButton(props) {
           alt="swordIcon"
           className={
             props.showOrHideNavbar
-              ? `swordIcon swordIMid closeNav`
+              ? `swordIcon swordIMid close`
               : "swordIcon swordIMid"
           }
         />
@@ -41,7 +39,7 @@ function ShowAndHideNavButton(props) {
           alt="swordIcon"
           className={
             props.showOrHideNavbar
-              ? `swordIcon swordIBot closeNav`
+              ? `swordIcon swordIBot close`
               : "swordIcon swordIBot"
           }
         />

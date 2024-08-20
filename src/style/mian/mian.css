@@ -1,7 +1,7 @@
 main {
   display: grid;
-  grid-template-columns: minmax(4ch, 1fr) auto minmax(4ch, 1fr);
-  grid-template-rows: 1rem auto 4rem 2rem;
+  grid-template-columns: minmax(4ch, 1fr) 5fr minmax(4ch, 1fr);
+  grid-template-rows: 1rem auto auto 2rem;
   grid-template-areas:
     ". . ."
     ". articleArea ."
@@ -17,20 +17,25 @@ main {
     transform: rotate(180deg);
   }
 }
-.activeTenArticle {
+.activeArticle {
   grid-area: articleArea;
 }
 .subpagesList {
+  max-width: 100%;
   grid-area: subpageButtons;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 2ch;
   overflow: auto;
   flex: 1;
 }
 .subpagesLink {
-  width: max-content;
-  height: max-content;
+  width: 2em;
+  height: 3rem;
+  button {
+    width: 100%;
+  }
 }
 .subpagesLink > a {
   font-size: calc(var(--font-S) / 2);
@@ -43,6 +48,31 @@ main {
   display: block;
   align-items: center;
 }
-.prevSubpages {
+.prevSubpages > button > img {
   transform: rotate(180deg);
+}
+.scherchLink {
+  a {
+    position: relative;
+    margin-bottom: 2rem;
+    color: #73383e;
+    display: inline-block;
+    &::after {
+      content: url("../../elements/multimedia/strzalka.png");
+      position: absolute;
+      top: 0%;
+      left: 100%;
+    }
+  }
+  article {
+    &.hiddenFind {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+    span {
+      font-weight: bolder;
+    }
+  }
 }

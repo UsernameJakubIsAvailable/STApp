@@ -4,6 +4,7 @@ import FirstParagraf from "./FirstParagraf";
 import ResidualParagraf from "./ResidualParagraf";
 import ArticeIMG from "./ArticeIMG";
 import CodeElement from "./CodeElement";
+import ImageAndDescryption from "./ImageAndDescryption";
 
 function Article(props) {
   const selectType = (data, i) => {
@@ -16,22 +17,56 @@ function Article(props) {
           link={data.link}
         />
       );
-    } else if (data.type === "Title") {
-      return <Title key={data.context} title={data.context} date={data.date} />;
-    } else if (data.type === "FirstParagraf") {
-      return <FirstParagraf key={data.context} firstParagraf={data.context} />;
-    } else if (data.type === "RedusialParagraf") {
-      return <ResidualParagraf key={data.context} paragraf={data.context} />;
-    } else if (data.type === "ArticeIMG") {
+    }
+    if (data.type === "Title") {
+      return (
+        <Title
+          key={data.context.length + i}
+          title={data.context}
+          date={data.date}
+        />
+      );
+    }
+    if (data.type === "FirstParagraf") {
+      return (
+        <FirstParagraf
+          key={data.context.length + i}
+          firstParagraf={data.context}
+        />
+      );
+    }
+    if (data.type === "RedusialParagraf") {
+      return (
+        <ResidualParagraf
+          key={data.context.length + i}
+          paragraf={data.context}
+        />
+      );
+    }
+    if (data.type === "ArticeIMG") {
       return (
         <ArticeIMG
-          key={data.context}
+          key={data.context.length + i}
           imgSrc={data.context}
           imgDescription={data.imgDescription}
         />
       );
-    } else if (data.type === "CodeElement") {
-      return <CodeElement key={data.context} stringToCode={data.context} />;
+    }
+    if (data.type === "CodeElement") {
+      return (
+        <CodeElement
+          key={data.context.length + i}
+          stringToCode={data.context}
+        />
+      );
+    }
+    if (data.type === "ImageAndDescryption") {
+      return (
+        <ImageAndDescryption
+          imgSrc={data.context.length + i}
+          data={data.context}
+        />
+      );
     }
   };
   return (

@@ -75,8 +75,8 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
 #root {
   overflow: scroll;
   & > .myCustomScroll {
-    overflow: hidden;
-    grid-area: 1/4/3/5;
+    /* height: 90vh; */
+    grid-area: 2/4/3/5;
     position: sticky;
     position: -webkit-sticky;
     flex-direction: column;
@@ -85,10 +85,12 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
     align-items: center;
     left: 0;
     top: 0;
+    /* padding-top: 2.5vh; */
     & > .scrollTumb {
-      top: 25rem;
-      height: calc(100% - 25rem);
-      position: relative;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 370px;
+      height: 30%;
       & > div {
         top: calc(var(--font-S) * 1.7 / 2 * -1);
         position: absolute;
@@ -146,4 +148,8 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
       -ms-user-select: none;
     }
   }
+}
+
+#mainScrolledChild {
+  min-height: 200vh;
 }

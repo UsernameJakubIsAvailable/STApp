@@ -9,20 +9,20 @@ nav {
   width: 30px;
   transition: all 1s ease;
 }
-.swordITop.closeNav {
+.swordITop.close {
   transform: translate(-0%, 100%) rotate(-45deg);
 }
 .swordIMid {
   transform: rotate(180deg);
 }
-.swordIMid.closeNav {
+.swordIMid.close {
   transform: translate(50%, 0) rotate(90deg);
   opacity: 0;
 }
-.swordIBot.closeNav {
+.swordIBot.close {
   transform: translate(-0%, -100%) rotate(45deg);
 }
-.circle.closeNav {
+.circle.close {
   transform: rotate(-90deg);
 }
 .websiteNav {
@@ -35,6 +35,7 @@ nav {
   padding-left: 1ch;
 }
 .visableSectionButton {
+  display: flex;
   font-size: var(--font-S);
   width: 100%;
   color: #73383e;
@@ -79,20 +80,21 @@ nav {
 .socialLinks {
   display: grid;
   grid-template:
-    calc(var(--font-S)) calc(var(--font-S) * 2.5)
+    var(--font-S) calc(var(--font-S) * 2.5)
     / 1fr 1fr;
   gap: 0 1ch;
   & > .navSectionBreak {
     grid-area: 1 / 1 / 2 / 3;
   }
   & > a {
-    justify-self: end;
-    > img {
+    display: grid;
+    img {
+      justify-self: end;
       height: calc(var(--font-S) * 2.5);
-      width: calc(var(--font-S) * 2.5);
+      aspect-ratio: 1/1;
     }
   }
-  & > a:last-child {
+  a:last-child > img {
     justify-self: start;
   }
 }

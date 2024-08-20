@@ -1,9 +1,6 @@
-function ArticeIMG(props){
-
-    return(
-        <img loading="lazy" className="articleIMG figureIMG" src={props.imgSrc} alt="news"/>
-
-    )
-
+function ArticeIMG(props) {
+  return (
+    <img loading="lazy" className="articleIMG" src={props.imgSrc} alt="news" />
+  );
 }
-export default ArticeIMG
+export default ArticeIMG;

@@ -6,7 +6,7 @@
   grid-template-rows: 20rem auto;
   gap: 0 3em;
   z-index: 1;
-  padding-bottom: 2rem;
+  padding-bottom: var(--font-S);
 }
 #root::before {
   content: "";
@@ -35,14 +35,19 @@ nav {
 main {
   grid-area: 2 / 3 / 3 / 5;
 }
-@media (max-width: 90rem) {
+@media (max-width: 100rem) {
+  #root {
+    grid-template-columns: 1fr repeat(3, 20rem) 1fr;
+    grid-template-rows: 20rem auto;
+  }
+}
+@media (max-width: 70rem) {
   #root {
     grid-template: 200px auto / 1fr repeat(3, 16em) 1fr;
     gap: 0 1em;
     --font-S: 1.4rem;
   }
 }
-
 @media (max-width: calc(50rem + 60px)) {
   #root {
     grid-template: 150px auto / 1fr 10rem 10rem 10rem 1fr;
@@ -66,7 +71,7 @@ main {
   .hiddenNav {
     transform: translate(500px);
   }
-  #root:has(nav > .showAndHideNavButton.closeNav) > main::after {
+  #root:has(nav > .showAndHideNavButton.close) > main::after {
     position: fixed;
     content: "";
     width: 100vw;
@@ -123,7 +128,7 @@ main {
       border: #73383e solid 3px;
     }
   }
-  .showAndHideNavButton.closeNav {
+  .showAndHideNavButton.close {
     transform: translate(-150px);
   }
 }
@@ -139,7 +144,7 @@ main {
   main {
     grid-area: 2 / 2 / 3 / 3;
   }
-  .showAndHideNavButton.closeNav {
+  .showAndHideNavButton.close {
     transform: translate(-500px);
   }
 }

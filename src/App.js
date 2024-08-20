@@ -3,67 +3,76 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./elements/header/Header.js";
 import Main from "./elements/main/Main.js";
 import Nav from "./elements/nav/Nav.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import API_BASE_URL from "./fetch/API_BASE_URL.js";
 
 import MyCustomScroll from "./elements/MyCustolScroll.js";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
+  const [tab, setTab] = useState();
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/podstronies?fields[0]=id&fields[2]=sciezka`)
+      .then((res) => res.json())
+      .then((data) => {
+        const tree = [];
+        const insertNode = (currentLevel, parts) => {
+          parts.forEach((part, index) => {
+            let existingNode = currentLevel.find((node) => node.id === part);
 
-  //test
-  const [backgroundVersion, setBackgroundVersion] = useState("");
+            if (!existingNode) {
+              existingNode = { id: part, children: [] };
+              currentLevel.push(existingNode);
+              currentLevel.sort((a, b) => {
+                if (a.id < b.id) {
+                  return -1;
+                } else {
+                  return 1;
+                }
+              });
+            }
+            if (index === parts.length - 1) {
+              delete existingNode.children;
+            } else {
+              if (!existingNode.children) {
+                existingNode.children = [];
+              }
+            }
+            currentLevel = existingNode.children;
+          });
+        };
 
-  const backgroundVersions = ["1", "2", "3"];
+        const transformData = (data) => {
+          data.forEach((item) => {
+            const parts = item.attributes.sciezka.split(/[/]/);
+            insertNode(tree, parts);
+          });
+          setTab(tree);
+        };
+        transformData(data.data);
+      });
+  }, []);
 
-  const handleBackgroundChange = (version) => {
-    setBackgroundVersion("ver" + version);
-  };
-  //testEnd
-
-  const handleValueChange = (e) => {
-    setSearchValue(e.target.value);
+  const handleValueChange = (value) => {
+    setSearchValue(value);
   };
   return (
     <>
       <BrowserRouter>
         <Header />
         <Nav
-          ver={backgroundVersion}
+          tab={tab}
+          handleValueChange={handleValueChange}
+          searchValue={searchValue}
+          // setSearchValue={setSearchValue}
+        />
+        <Main
+          tab={tab}
           handleValueChange={handleValueChange}
           searchValue={searchValue}
         />
-        <Main ver={backgroundVersion} searchValue={searchValue} />
         <MyCustomScroll fatherSelector="root" childSelector="mainContent" />
       </BrowserRouter>
-
-      {/* test */}
-      <div
-        style={{
-          top: "calc(100% - 50px)",
-          width: "100%",
-          height: "50px",
-          backgroundColor: "black",
-          position: "fixed",
-          display: "none",
-          gap: "5px",
-          opacity: "0.5",
-        }}
-      >
-        {backgroundVersions.map((ver) => (
-          <button
-            key={ver}
-            style={{
-              width: "33%",
-              backgroundColor: "grey",
-              padding: "2em",
-            }}
-            onClick={() => handleBackgroundChange(ver)}
-          >
-            {ver}
-          </button>
-        ))}
-      </div>
-      {/* testEnd */}
     </>
   );
 }

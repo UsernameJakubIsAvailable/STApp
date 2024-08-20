@@ -1,13 +1,14 @@
-import NavElement from "./NavElement";
-import tabs from "../../websiteContent/Tabs";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+
+import NavElement from "./NavElement";
 import ShowAndHideNavButton from "./ShowAndHideNavButton";
-import searchIcon from "../multimedia/lupa.png";
 import navSectionBreak from "../multimedia/ozdobnik-navbar.png";
+import MyCustomScroll from "../MyCustolScroll";
+
+import searchIcon from "../multimedia/lupa.png";
 import facebook from "../multimedia/facebook.png";
 import discord from "../multimedia/discord.png";
-import MyCustomScroll from "../MyCustolScroll";
 
 function Nav(props) {
   const [showOrHideNavbar, setShowOrHideNavbar] = useState(false);
@@ -32,32 +33,30 @@ function Nav(props) {
   const creteElements = (element, nameFather) => {
     let elementNav = "";
     let farherName = nameFather ? nameFather + "/" : "";
-    if (element.data) {
-      const name = element.name;
+    if (element.children) {
+      const name = element.id;
       elementNav = (
         <NavElement
-          key={name}
+          key={element.id}
           farherName={farherName}
+          slug={element.id}
           name={name}
-          data={element.data}
+          data={element.children}
           creteElements={creteElements}
         />
       );
     } else {
       elementNav = (
         <li
-          onClick={() => handleShowAndHideNavButton()}
-          key={element.name}
+          onClick={() => {
+            handleShowAndHideNavButton();
+            document.getElementById("root").scrollTo(0, 0);
+          }}
+          key={element.id}
           className="navElement navElementBlueBorder"
         >
-          <Link
-            className="navLink"
-            to={(farherName + element.name)
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .replace(/\s/g, "_")}
-          >
-            {element.name}
+          <Link className="navLink" to={nameFather + "/" + element.id}>
+            {element.id}
           </Link>
         </li>
       );
@@ -70,16 +69,24 @@ function Nav(props) {
       <nav
         id="nav"
         ref={navRef}
-        className={`${showOrHideNavbar ? "hiddenNav" : "showNav"} ${props.ver}`}
+        className={`${showOrHideNavbar ? "hiddenNav" : "showNav"}`}
       >
         <section className="search">
-          <Link onClick={() => handleShowAndHideNavButton()} to={"Szukaj1"}>
+          <Link
+            onClick={() => {
+              handleShowAndHideNavButton();
+              document.getElementById("root").scrollTo(0, 0);
+              // props.handleValueChange(searchInputValue);
+            }}
+            to={"Szukaj"}
+          >
             <img src={searchIcon} alt="searchIcon" />
           </Link>
-
           <input
             value={props.searchValue}
-            onChange={props.handleValueChange}
+            onChange={(e) => {
+              props.handleValueChange(e.target.value);
+            }}
           ></input>
           <img
             className="navSectionBreak"
@@ -95,14 +102,17 @@ function Nav(props) {
           <ul id="websieNavUl">
             <li className="navElement navElementBlueBorder">
               <Link
-                onClick={() => handleShowAndHideNavButton()}
+                onClick={() => {
+                  handleShowAndHideNavButton();
+                  document.getElementById("root").scrollTo(0, 0);
+                }}
                 className="navLink"
                 to={"/"}
               >
                 Aktualności
               </Link>
             </li>
-            {tabs.map((element) => creteElements(element))}
+            {props.tab && props.tab.map((element) => creteElements(element))}
           </ul>
           <MyCustomScroll
             fatherSelector="websiteNav"
