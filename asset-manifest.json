@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/STApp/static/css/main.2ae94aae.css",
-    "main.js": "/STApp/static/js/main.a9632cd4.js",
+    "main.css": "/STApp/static/css/main.13325a20.css",
+    "main.js": "/STApp/static/js/main.8da44268.js",
     "static/media/tlo-tyl1-czarne.png": "/STApp/static/media/tlo-tyl1-czarne.be57e80f39b382fe1be1.png",
     "static/media/tlo-final1.png": "/STApp/static/media/tlo-final1.d840a34c27354c194e36.png",
     "static/media/b1ElaBackgroundMainD.png": "/STApp/static/media/b1ElaBackgroundMainD.a834763b650c6151499b.png",
@@ -12,9 +12,11 @@
     "static/media/a1ElaBackgroundMain.png": "/STApp/static/media/a1ElaBackgroundMain.ea05cbcd6c0bbfaf1931.png",
     "static/media/tlo-navbar.png": "/STApp/static/media/tlo-navbar.770804a5f2222ce13697.png",
     "static/media/banner-listopad.png": "/STApp/static/media/banner-listopad.de76ae875ce21c7c4885.png",
+    "static/media/KereruBold.ttf": "/STApp/static/media/KereruBold.3feebd1f4bdfb16bc3a1.ttf",
     "static/media/c1ElaBackgroundNav.png": "/STApp/static/media/c1ElaBackgroundNav.97b60128622c300a0c58.png",
     "static/media/b1ElaBackgroundNav.png": "/STApp/static/media/b1ElaBackgroundNav.e3ee917e17aa607605fb.png",
     "static/media/a1ElaBackgroundNav.png": "/STApp/static/media/a1ElaBackgroundNav.bf74f4b94fdf82ffba1a.png",
+    "static/media/MiddleAges.ttf": "/STApp/static/media/MiddleAges.27121c08fe19ceb64857.ttf",
     "static/media/liscie-banner-prawy.png": "/STApp/static/media/liscie-banner-prawy.1f3ac7729801495ceb20.png",
     "static/media/polnoc-jezdziec.png": "/STApp/static/media/polnoc-jezdziec.7b860e26d37ae23f483a.png",
     "static/media/poludnie-jezdziec.png": "/STApp/static/media/poludnie-jezdziec.8498b4aea6222dcbc497.png",
@@ -23,11 +25,11 @@
     "static/media/malaRamkaTest1.png": "/STApp/static/media/malaRamkaTest1.0c50d6d534425910b731.png",
     "static/media/wstazka1.png": "/STApp/static/media/wstazka1.88e08907a8cbf1c79ee4.png",
     "index.html": "/STApp/index.html",
-    "main.2ae94aae.css.map": "/STApp/static/css/main.2ae94aae.css.map",
-    "main.a9632cd4.js.map": "/STApp/static/js/main.a9632cd4.js.map"
+    "main.13325a20.css.map": "/STApp/static/css/main.13325a20.css.map",
+    "main.8da44268.js.map": "/STApp/static/js/main.8da44268.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ae94aae.css",
-    "static/js/main.a9632cd4.js"
+    "static/css/main.13325a20.css",
+    "static/js/main.8da44268.js"
   ]
 }
