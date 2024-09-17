@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/STApp/static/css/main.663042ed.css",
-    "main.js": "/STApp/static/js/main.99760863.js",
+    "main.css": "/STApp/static/css/main.53fba697.css",
+    "main.js": "/STApp/static/js/main.1802c0ff.js",
     "static/media/tlo-tyl1-czarne.png": "/STApp/static/media/tlo-tyl1-czarne.be57e80f39b382fe1be1.png",
     "static/media/tlo-final1.png": "/STApp/static/media/tlo-final1.d840a34c27354c194e36.png",
     "static/media/b1ElaBackgroundMainD.png": "/STApp/static/media/b1ElaBackgroundMainD.a834763b650c6151499b.png",
@@ -25,11 +25,11 @@
     "static/media/malaRamkaTest1.png": "/STApp/static/media/malaRamkaTest1.0c50d6d534425910b731.png",
     "static/media/wstazka1.png": "/STApp/static/media/wstazka1.88e08907a8cbf1c79ee4.png",
     "index.html": "/STApp/index.html",
-    "main.663042ed.css.map": "/STApp/static/css/main.663042ed.css.map",
-    "main.99760863.js.map": "/STApp/static/js/main.99760863.js.map"
+    "main.53fba697.css.map": "/STApp/static/css/main.53fba697.css.map",
+    "main.1802c0ff.js.map": "/STApp/static/js/main.1802c0ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.663042ed.css",
-    "static/js/main.99760863.js"
+    "static/css/main.53fba697.css",
+    "static/js/main.1802c0ff.js"
   ]
 }
