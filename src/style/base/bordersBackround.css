@@ -1,29 +1,133 @@
-nav,
+/* nav,
 main {
   border-image-source: url("../../../public/multimedia/malaRamkaTest1.png");
   border-image-repeat: round;
   border-image-slice: 34;
   border-image-width: 25px;
   padding: 1rem 2ch;
-}
-nav {
+} */
+/* nav {
   background-image: url("../../elements/multimedia/tlo-navbar.png");
   background-size: calc(100% - 4px) calc(100% - 8px);
   background-repeat: no-repeat;
   background-position: 6px 6px;
   padding: 20px;
-}
-main::before {
+} */
+/* main::before {
   grid-area: 1/1/-1/-1;
   content: url("");
-  width: 100%;
-  height: 120dvh;
+  height: 90vh;
+  width: 100%; /* height: 120dvh; */
+
+/* height: 120dvh;
   position: sticky;
   position: -webkit-sticky;
-  top: -10vh;
-  background-image: url("../../elements/multimedia/tlo-final1.png");
+  top: -10vh; */
+/* background-image: url("../../elements/multimedia/tlo-final1.png");
   background-size: calc(100% + 15px) calc(120vh + 23px);
   background-position: -5px -8px;
   background-repeat: no-repeat;
   z-index: -1;
+} */
+.backgroundForMain {
+  /* background-image: url("../../elements//multimedia/tlo-final1.png"); */
+  grid-area: 2 / 3 / 3 / 5;
+  height: calc(99dvh - var(--headerHeight));
+  top: var(--headerHeight);
+  position: sticky;
+  position: -webkit-sticky;
+  background-image: url("../../elements//multimedia/tlo-final1.png");
+  background-size: calc(100% - 30px) calc(100% - 30px);
+  background-position: 15px 15px;
+  background-repeat: no-repeat;
+}
+.backgroundForNav {
+  grid-area: 2 / 2 / 3 / 3;
+  height: calc(99dvh - var(--headerHeight));
+  top: var(--headerHeight);
+  position: sticky;
+  position: -webkit-sticky;
+  background-image: url("../../elements/multimedia/tlo-navbar.png");
+  background-size: calc(100% - 15px) calc(100% - 18px);
+  background-position: 13px 13px;
+  background-repeat: no-repeat;
+  /* background-position: 6px 6px; */
+}
+.borderIMG {
+  position: absolute;
+}
+.borderTop,
+.borderBottom {
+  background-image: url("../../elements/multimedia/singleBoorderBot.png");
+  width: 100%;
+  height: 17px;
+}
+.borderBottom {
+  bottom: 0;
+  rotate: 180deg;
+}
+.borderTop {
+  top: 0;
+}
+.borderLeft,
+.borderRight {
+  background-image: url("../../elements/multimedia/singleBoorderRight.png");
+  height: 100%;
+  width: 17px;
+}
+.borderRight {
+  right: 0;
+  rotate: 180deg;
+}
+.corner {
+  background-image: url("../../elements/multimedia/singleCorrner.png");
+  width: 30px;
+  height: 32px;
+}
+.cornerRightBottom {
+  bottom: 0;
+  right: 0;
+  rotate: 180deg;
+}
+.cornerLeftBottom {
+  bottom: 0;
+  left: 0;
+  rotate: 270deg;
+}
+.cornerRightTop {
+  right: 0;
+  top: 0;
+  rotate: 90deg;
+}
+.cornerLeftTop {
+  left: 0;
+  top: 0;
+}
+
+@media (max-width: 70rem) {
+  .borderTop,
+  .borderBottom {
+    height: 10px;
+    background-size: auto 10px;
+    background-repeat: repeat no-repeat;
+  }
+  .borderLeft,
+  .borderRight {
+    width: 10px;
+    background-size: 10px auto;
+    background-repeat: no-repeat repeat;
+  }
+  .corner {
+    width: 25px;
+    height: 27px;
+    background-size: 25px 27px;
+  }
+  .backgroundForNav {
+    background-size: calc(100% - 0px) calc(100% - 3px);
+    background-position: 5px 3px;
+  }
+  .backgroundForMain {
+    background-size: calc(100% - 20px) calc(100% - 20px);
+    background-position: 10px 10px;
+  }
 }

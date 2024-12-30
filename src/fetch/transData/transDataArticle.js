@@ -6,18 +6,31 @@ const transDataArticle = (element, index, transData) => {
       transData[index].push({
         type: "FirstParagraf",
         context: element.paragraf,
+        style: element.stylCzcionki,
+        fontSize: element.wielkoscCzcionki,
       });
     } else if (element.Ornament === "ZwyklyParagraf") {
       transData[index].push({
         type: "RedusialParagraf",
         context: element.paragraf,
+        style: element.stylCzcionki,
+        fontSize: element.wielkoscCzcionki,
+      });
+    }
+    if (element.Ornament === "Tabela") {
+      transData[index].push({
+        type: "table",
+        context: element.paragraf,
+        style: element.stylCzcionki,
+        fontSize: element.wielkoscCzcionki,
       });
     }
   }
   if (element.image.data) {
+    // element.image.data.map((image) => API_BASE_URL + image.attributes.url);
     transData[index].push({
-      type: "ArticeIMG",
-      context: API_BASE_URL + element.image.data.attributes.url,
+      type: "galery",
+      context: element.image,
     });
   }
 };

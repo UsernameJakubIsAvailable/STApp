@@ -5,6 +5,8 @@ import ResidualParagraf from "./ResidualParagraf";
 import ArticeIMG from "./ArticeIMG";
 import CodeElement from "./CodeElement";
 import ImageAndDescryption from "./ImageAndDescryption";
+import Galery from "./Galery";
+import Table from "./Table";
 
 function Article(props) {
   const selectType = (data, i) => {
@@ -32,6 +34,9 @@ function Article(props) {
         <FirstParagraf
           key={data.context.length + i}
           firstParagraf={data.context}
+          fontSize={data.fontSize}
+          style={data.style}
+          type={data.type}
         />
       );
     }
@@ -40,16 +45,21 @@ function Article(props) {
         <ResidualParagraf
           key={data.context.length + i}
           paragraf={data.context}
+          fontSize={data.fontSize}
+          style={data.style}
+          highlight={props.highlight}
         />
       );
     }
     if (data.type === "ArticeIMG") {
       return (
-        <ArticeIMG
-          key={data.context.length + i}
-          imgSrc={data.context}
-          imgDescription={data.imgDescription}
-        />
+        <Galery images={data.context} />
+
+        // <ArticeIMG
+        //   key={data.context.length + i}
+        //   imgSrc={data.context}
+        //   imgDescription={data.imgDescription}
+        // />
       );
     }
     if (data.type === "CodeElement") {
@@ -67,6 +77,12 @@ function Article(props) {
           data={data.context}
         />
       );
+    }
+    if (data.type === "galery") {
+      return <Galery images={data.context} />;
+    }
+    if (data.type === "table") {
+      return <Table table={data.context} />;
     }
   };
   return (

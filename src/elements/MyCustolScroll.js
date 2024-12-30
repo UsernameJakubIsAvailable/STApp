@@ -1,175 +1,257 @@
 import { useEffect, useRef, useState } from "react";
 import wstazka from "../elements/multimedia/wstazka1.png";
+import { isMobile } from "react-device-detect";
 
 function MyCustomScroll(props) {
-  const fatherElement = useRef("");
-  const childElement = useRef("");
-  const [childDistanceFromTop, setChildDistanceFromTop] = useState(0);
-  const [childDistanceFromTopX, setChildDistanceFromTopX] = useState(0);
+  const scrollingConteinerSelector = props.scrollingAreaSelector;
+  const fatherSelector = props.fatherSelector;
+  const childSelector = props.childSelector;
 
-  const fatherElementHeight = useRef(0);
+  const scrollingElement = useRef();
+  const scrollingConteiner = useRef();
+  const childElement = useRef();
 
-  const childElementHeight = useRef(0);
+  const fatherHeight = useRef(0);
+  const childHeight = useRef(0);
+  const conteinerHeight = useRef(0);
 
+  const scrollThumbRef = useRef();
   const heightOfScrollingAreaRef = useRef(0);
 
-  const myCustomScrollRef = useRef("");
-  const scrollThumbRef = useRef("");
+  const extraSize = useRef(0);
 
-  const [fatherElementTopVisibleY, setFatherElementTopVisibleY] = useState("");
+  const scrollThumbVisible = useRef(false);
+
+  const [yValue, setyValue] = useState(0);
+  const [scrolThumbPosition, setScrolThumbPosition] = useState(0);
 
   const [mouseDownOnScrolingArea, setMouseDownOnScrolingArea] = useState(false);
 
-  //useEfects setData
-  useEffect(() => {
-    fatherElement.current = document.getElementById(props.fatherSelector);
-    childElement.current = document.getElementById(props.childSelector);
-    if (fatherElement.current.getBoundingClientRect().top === 0) {
-      setChildDistanceFromTop(childElement.current.offsetTop);
-      setChildDistanceFromTopX(childElement.current.offsetTop);
-    }
+  const [isLoaded, setIsLoaded] = useState(false);
 
-    setFatherElementTopVisibleY(fatherElement.current.scrollTop);
+  const handleScroll = () => {
+    setyValue(document.getElementById(fatherSelector).scrollTop);
+  };
+  const handleWindowScroll = () => {
+    setyValue(window.pageYOffset);
+  };
 
+  // updating value on resize (call in observ useEffect) S
+  const updateValuesResize = () => {
+    // przeniesione, do testów S
     heightOfScrollingAreaRef.current =
       scrollThumbRef.current.getBoundingClientRect().height -
       scrollThumbRef.current.lastChild.getBoundingClientRect().height;
+    // przeniesione, do testów E
 
-    fatherElementHeight.current =
-      fatherElement.current.getBoundingClientRect().height;
-    childElementHeight.current =
-      childElement.current.getBoundingClientRect().height;
+    if (props.extraSize) {
+      const extraElements = document.querySelectorAll(`.${props.extraSize}`);
+      extraElements.forEach((element) => {
+        extraSize.current = element.getBoundingClientRect().height;
+      });
+    }
+    const fatherSelectorHeight = document
+      .getElementById(fatherSelector)
+      .getBoundingClientRect().height;
+    const childSelectorHeight = document
+      .getElementById(childSelector)
+      .getBoundingClientRect().height;
+    const scrolingConteinerSelectorrHeight =
+      childSelectorHeight +
+      extraSize.current +
+      (props.isWorkingOnWindow ? window.innerHeight - fatherSelectorHeight : 0);
+
+    fatherHeight.current = fatherSelectorHeight;
+    childHeight.current = childSelectorHeight;
+    conteinerHeight.current = scrolingConteinerSelectorrHeight;
+    scrollingConteiner.current.style.height = `${scrolingConteinerSelectorrHeight}px`;
+    updateScrolThumbPostion();
+  };
+
+  const updateScrolThumbPostion = () => {
+    if (childHeight.current < fatherHeight.current) {
+      setScrolThumbPosition(0);
+      return;
+    }
+
+    if (props.isWorkingOnWindow === true) {
+      const precentOfScrolledElement = Math.round(
+        (window.pageYOffset * 100) /
+          (conteinerHeight.current - window.innerHeight)
+      );
+
+      // stary sposób liczenia na window:
+
+      // (heightOfScrollingAreaRef.current * yValue) /
+      // (conteinerHeight.current - fatherHeight.current) -
+
+      const newScrollThumbPositon =
+        (precentOfScrolledElement / 100) * heightOfScrollingAreaRef.current -
+        25;
+      setScrolThumbPosition(newScrollThumbPositon);
+    } else {
+      const newScrollThumbPositon =
+        (heightOfScrollingAreaRef.current * yValue) /
+          (childHeight.current - fatherHeight.current) -
+        25;
+      setScrolThumbPosition(newScrollThumbPositon);
+    }
+  };
+
+  useEffect(() => {
+    !isLoaded && setIsLoaded(true);
+    scrollThumbVisible.current = true;
+
+    setyValue(0);
   }, []);
+  // updating value on resize (call in observ useEffect) E
 
-  //useEffects observe
+  //useEffect 1render, setValues. S
   useEffect(() => {
-    const heightObserv = new ResizeObserver((entries) => {
-      if (
-        childElement.current.getBoundingClientRect().height !==
-        childElementHeight.current
-      ) {
-        updateStyleonResize();
-      }
-    });
-    const obserwowany = childElement.current;
-    heightObserv.observe(obserwowany, { contentRect: "height" });
-    return () => heightObserv.unobserve(obserwowany, { contentRect: "height" });
-  });
+    scrollingElement.current = document.getElementById(fatherSelector);
+    scrollingConteiner.current = document.getElementById(
+      scrollingConteinerSelector
+    );
+    childElement.current = document.getElementById(childSelector);
+    scrollingConteiner.current = document.getElementById(
+      scrollingConteinerSelector
+    );
+  }, []);
+  //useEffect 1render, setValues. E
 
-  //useEffects lisiners
+  // useEffect(() => {
+  //   heightOfScrollingAreaRef.current =
+  //     scrollThumbRef.current.getBoundingClientRect().height -
+  //     scrollThumbRef.current.lastChild.getBoundingClientRect().height;
+  // });
+
+  //useEffect everyTime, eventsLisiner:scroll&click on scoll. S
   useEffect(() => {
-    fatherElement.current.addEventListener("scroll", handleScroll);
+    updateScrolThumbPostion();
+
+    if (props.isWorkingOnWindow) {
+      window.addEventListener("scroll", handleWindowScroll);
+      window.addEventListener("resize", updateValuesResize);
+    } else {
+      document
+        .getElementById(fatherSelector)
+        .addEventListener("scroll", handleScroll);
+    }
     window.addEventListener("pointerup", handleMouseUpOnScrollingArea);
     window.addEventListener("pointermove", handleMoseMoveOnScrollingArea);
-    window.addEventListener("resize", updateStyleonResize);
-
     return () => {
-      fatherElement.current.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleWindowScroll);
+      window.removeEventListener("resize", updateValuesResize);
+
+      document
+        .getElementById(fatherSelector)
+        .removeEventListener("scroll", handleScroll);
       window.removeEventListener("pointerup", handleMouseUpOnScrollingArea);
       window.removeEventListener("pointermove", handleMoseMoveOnScrollingArea);
-      window.removeEventListener("resize", updateStyleonResize);
     };
   });
+  //useEffect everyTime, observ events: scrol&click on scoll. E
 
-  //functions
-  const handleScroll = () => {
-    setFatherElementTopVisibleY(fatherElement.current.scrollTop);
-  };
-
-  const updateStyleonResize = (e) => {
-    if (fatherElement.current.getBoundingClientRect().top === 0) {
-      setChildDistanceFromTop(childElement.current.offsetTop);
-      setChildDistanceFromTopX(childElement.current.offsetTop);
+  //useEffect render when yValue change, handle scroll and scrollThumbPosition S
+  useEffect(() => {
+    if (yValue > 0) {
+      scrollingElement.current.scrollTo(0, yValue, "smooth");
+    } else {
+      scrollingElement.current.scrollTo(0, 0, "smooth");
     }
-    childElement.current = document.getElementById(props.childSelector);
+  }, [yValue]);
+  //useEffect render when yValue change, handle scroll and scrollThumbPosition E
 
-    heightOfScrollingAreaRef.current =
-      scrollThumbRef.current.getBoundingClientRect().height -
-      scrollThumbRef.current.lastChild.getBoundingClientRect().height;
+  //useEffect 1render, create observer s
+  useEffect(() => {
+    const heightObserv = new ResizeObserver(() => {
+      if (
+        childElement.current.getBoundingClientRect().height !==
+        childHeight.current
+      ) {
+        updateValuesResize();
+      }
+    });
+    const observe = childElement.current;
+    heightObserv.observe(observe, { contentRect: "height" });
+    return () => heightObserv.unobserve(observe, { contentRect: "height" });
+  }, []);
+  //useEffect 1render, create observer e
 
-    setFatherElementTopVisibleY(fatherElement.current.scrollTop);
-
-    fatherElementHeight.current =
-      fatherElement.current.getBoundingClientRect().height;
-
-    childElementHeight.current =
-      childElement.current.getBoundingClientRect().height;
-
-    handleClickScroll();
-  };
-
+  // handle click on scroll S
   const handleMoseDownOnScrollingArea = (e) => {
+    if (childHeight.current < fatherHeight.current) {
+      return;
+    }
     setMouseDownOnScrolingArea(true);
-    let yCordinateRelativeToScrollTumb =
+
+    const yCordinateRelativeToScrollTumb =
       e.clientY - scrollThumbRef.current.getBoundingClientRect().top;
-    // if (yCordinateRelativeToScrollTumb < 0) {
-    //   yCordinateRelativeToScrollTumb = 0;
-    // }
-
     const currentTopYVisibleValue =
-      childElementHeight.current - fatherElementHeight.current;
-
+      (childHeight.current > fatherHeight.current
+        ? childHeight.current - fatherHeight.current + extraSize.current
+        : childHeight.current) + extraSize.current;
     const heightOfScrollingArea =
       scrollThumbRef.current.getBoundingClientRect().height -
       scrollThumbRef.current.lastChild.getBoundingClientRect().height;
-
     const newYValue =
       (yCordinateRelativeToScrollTumb * currentTopYVisibleValue) /
       heightOfScrollingArea;
-
-    handleClickScroll(newYValue);
+    if (newYValue >= 0 && newYValue <= currentTopYVisibleValue) {
+      setyValue(newYValue);
+      handleClickScroll(newYValue);
+    } else if (newYValue < 0) {
+      setyValue(0);
+      handleClickScroll(0);
+    } else if (newYValue > currentTopYVisibleValue) {
+      setyValue(currentTopYVisibleValue);
+      handleClickScroll(currentTopYVisibleValue);
+    }
   };
-
   const handleMoseMoveOnScrollingArea = (e) => {
     if (mouseDownOnScrolingArea) {
       handleMoseDownOnScrollingArea(e);
     }
   };
-
-  const handleMouseUpOnScrollingArea = () => {
+  const handleMouseUpOnScrollingArea = (e) => {
     setMouseDownOnScrolingArea(false);
   };
-
-  const handleClickScroll = (
-    newYValue = fatherElementTopVisibleY,
-    value = 0
-  ) => {
-    fatherElement.current.scrollTo(0, newYValue + value, "smooth");
+  const handleClickScroll = (newYValue = yValue, value = 0) => {
+    if (props.isWorkingOnWindow) {
+      window.scrollTo(0, newYValue + value, "smooth");
+    }
   };
+  // handle click on scroll E
+
   return (
-    <ul
-      className="myCustomScroll"
-      ref={myCustomScrollRef}
-      style={{
-        height: `${fatherElementHeight.current}px`,
-      }}
-    >
-      <li
-        ref={scrollThumbRef}
-        onPointerDown={(e) => handleMoseDownOnScrollingArea(e)}
-        className="scrollTumb"
+    <>
+      <div
         style={{
-          top: `${childDistanceFromTop + childDistanceFromTop * 0.3}px`,
+          height: fatherHeight.current - extraSize.current - 50,
+          top: 50,
         }}
+        id={props.id}
+        className={isMobile ? "myCustomScroll isMobile" : "myCustomScroll"}
       >
         <div
-          style={
-            scrollThumbRef.current === ""
-              ? {}
-              : {
-                  transform: `translate( 0, ${
-                    heightOfScrollingAreaRef.current /
-                    ((childElementHeight.current -
-                      fatherElementHeight.current) /
-                      fatherElementTopVisibleY)
-                  }px)`,
-                }
-          }
+          ref={scrollThumbRef}
+          onPointerDown={(e) => handleMoseDownOnScrollingArea(e)}
+          className="scrollTumb"
         >
-          <img src={wstazka} alt="wstazka" />
+          <div
+            style={
+              scrollThumbRef.current === ""
+                ? {}
+                : { transform: `translate( 0, ${scrolThumbPosition}px)` }
+            }
+          >
+            {isLoaded && (
+              <img className="scrollIMG" src={wstazka} alt="scroll" />
+            )}
+          </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </>
   );
 }
 export default MyCustomScroll;

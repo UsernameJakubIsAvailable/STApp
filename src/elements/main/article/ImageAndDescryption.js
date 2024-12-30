@@ -1,4 +1,5 @@
 import ArticeIMG from "./ArticeIMG";
+import Galery from "./Galery";
 
 function ImageAndDescryption(props) {
   return (
@@ -6,9 +7,12 @@ function ImageAndDescryption(props) {
       {props.data.map((element) => {
         return (
           <li className="ImageAndDescryptionElement">
-            <ArticeIMG imgSrc={element.image} />
-            <p className="itemName">{element.title}</p>
-            <p className="itemDescryption">{element.context}</p>
+            <Galery images={element.image} />
+            {/* <ArticeIMG imgSrc={element.image} /> */}
+            <article className="itemNameAndDescryption">
+              <p className="itemName">{element.title}</p>
+              <p className="itemDescryption">{element.context}</p>
+            </article>
           </li>
         );
       })}

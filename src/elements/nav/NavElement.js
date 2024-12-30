@@ -1,25 +1,45 @@
 import { useState } from "react";
-import dot from "../multimedia/kropka.png";
+import dot from "../multimedia/nowakropka.png";
 
 function TestElement(props) {
-  const [visableSection, setVisableSection] = useState("false");
+  const [visableSection, setVisableSection] = useState("true");
   const handleVisableSection = () => {
     setVisableSection(!visableSection);
   };
-
-  const farherName = props.farherName + props.slug;
+  const farherName = props.farherName
+    ? props.farherName + props.slug
+    : props.slug;
   return (
     <li key={props.id} className="navElement navElementRedBorder">
       <button
-        className="visableSectionButton"
+        className={
+          props.farherName !== ""
+            ? "visableSectionButton noBold"
+            : "visableSectionButton"
+        }
         onClick={() => handleVisableSection()}
       >
-        <img className="dot" alt="ozdobik" src={dot} />
+        <img
+          className={props.farherName !== "" ? "dot smallDot" : "dot"}
+          alt="ozdobik"
+          src={dot}
+        />
         {props.name}
       </button>
-      <ul style={visableSection ? { display: "none" } : null}>
-        {props.data.map((element) => props.creteElements(element, farherName))}
-      </ul>
+      {/* {!visableSection && (
+        <ul className="dropingElement">
+          {props.data.map((element) =>
+            props.creteElements(element, farherName)
+          )}
+        </ul> 
+      )} */}
+      <div className={!visableSection ? "droping dropingVisible" : "droping"}>
+        <ul>
+          {props.data.map((element) =>
+            props.creteElements(element, farherName)
+          )}
+        </ul>
+      </div>
     </li>
   );
 }

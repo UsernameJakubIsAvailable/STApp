@@ -10,7 +10,7 @@ function ArticleNews(props) {
     setHidden(!hidden);
   };
 
-  const wrapIsLongerThen = 920;
+  const wrapIsLongerThen = 900;
 
   const countingLetter = () => {
     let count = 0;
@@ -18,6 +18,10 @@ function ArticleNews(props) {
     const newData = [];
 
     props.data.forEach((paragraf) => {
+      if (paragraf.type === "galery") {
+        newData.push(paragraf);
+        return;
+      }
       if (paragraf.context && count < wrapIsLongerThen) {
         count += paragraf.context.length;
         if (count < wrapIsLongerThen) {
@@ -26,7 +30,15 @@ function ArticleNews(props) {
         } else {
           newData.push({
             type: paragraf.type,
-            context: paragraf.context.slice(0, count - wrapIsLongerThen),
+            context:
+              typeof paragraf.context === "string"
+                ? paragraf.context.slice(
+                    0,
+                    count - wrapIsLongerThen > wrapIsLongerThen
+                      ? wrapIsLongerThen
+                      : count - wrapIsLongerThen
+                  ) + "..."
+                : paragraf.context,
           });
         }
       }
@@ -41,7 +53,11 @@ function ArticleNews(props) {
   const data = hidden ? newDataRef.current : props.data;
   return (
     <>
-      <Article news={hidden ? "news hiddenNews" : "news"} data={data} />
+      <Article
+        highlight={props.highlight}
+        news={hidden ? "news hiddenNews" : "news"}
+        data={data}
+      />
       {isToLong.current ? (
         <button
           className="newsArticleHiddenShowButton"

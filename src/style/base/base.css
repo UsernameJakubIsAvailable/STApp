@@ -4,15 +4,23 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  color: black;
+  color: #303030;
 }
 
 @font-face {
   font-family: "Kingthings";
   src: url("../../../public/multimedia/Kingthings_Petrock.ttf");
 }
+@font-face {
+  font-family: "MiddleAges";
+  src: url("../../../public/multimedia//MiddleAges.ttf");
+}
+@font-face {
+  font-family: "KereruBold";
+  src: url("../../../public/multimedia//KereruBold.ttf");
+}
 body {
-  font-size: 1rem;
+  font-size: calc(var(--font-S) * 0.85);
 }
 #root {
   font-family: "Kingthings";
@@ -29,4 +37,25 @@ button {
 a {
   display: inline-block;
   position: relative;
+}
+.droping {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms;
+  ul,
+  article {
+    grid-area: 1/1/2/2;
+
+    overflow: hidden;
+  }
+}
+.dropingVisible {
+  grid-template-rows: 1fr;
+  ul,
+  article {
+    overflow: hidden;
+  }
+}
+.dropingHiden {
 }

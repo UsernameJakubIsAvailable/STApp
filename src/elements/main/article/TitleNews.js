@@ -6,7 +6,7 @@ function TitleNews(props) {
   // };
   return (
     <section className="titleAndDate">
-      <Link className="articleTitle" to={"/" + props.title}>
+      <Link className="articleTitle" to={"/Aktualnosci/" + props.title}>
         {props.title}
       </Link>
       <p>{props.date}</p>

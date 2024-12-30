@@ -1,4 +1,7 @@
 #root {
   /* font size */
-  --font-S: 1.6rem;
+  --font-S: 1.4rem;
+  --headerHeight: 10rem;
+  --navUlHeight: calc(70dvh - var(--headerHeight));
+  --articleContentWidth: 80ch;
 }

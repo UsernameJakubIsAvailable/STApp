@@ -1,28 +1,42 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Article from "./Article";
-import arrow from "../../multimedia/strzalka.png";
 import ArrowButton from "../../ArrowsButton";
 import Title from "./Title";
 
 function ArticleHidden(props) {
   const [articeVisibylity, setArticeVisibylity] = useState(false);
+  const buttonRef = useRef(null);
 
-  const handeArticeVisibylity = () => {
-    setArticeVisibylity(!articeVisibylity);
-  };
   const handlePremaVisibilty = () => {
     if (props.data[0].showAndhide) {
       return (
         <>
           {" "}
           <button
+            ref={buttonRef}
             className="articleHiddenButton"
-            onClick={() => handeArticeVisibylity()}
+            onClick={(e) => {
+              setTimeout(() => {
+                buttonRef.current.parentElement.scrollIntoView({
+                  behavior: "smooth",
+                  top: -20,
+                });
+              }, 250);
+              setArticeVisibylity(!articeVisibylity);
+            }}
           >
             <Title title={props.data[0].title} />
             <ArrowButton active={articeVisibylity} />
           </button>
-          {articeVisibylity && <Article data={props.data} />}
+          <div
+            className={
+              articeVisibylity
+                ? "droping dropingVisible"
+                : "droping dropingHiden"
+            }
+          >
+            <Article data={props.data} />
+          </div>
         </>
       );
     } else {
@@ -34,21 +48,6 @@ function ArticleHidden(props) {
       );
     }
   };
-  return (
-    <>
-      {handlePremaVisibilty()}
-      {/* {props.data[0].showAndhide ? (
-        <button
-          className="articleHiddenButton"
-          onClick={() => handeArticeVisibylity()}
-        >
-          {props.data[0].title} <ArrowButton active={articeVisibylity} />
-        </button>
-      ) : (
-        <p>{props.data[0].title}</p>
-      )}
-      {articeVisibylity && <Article data={props.data} />} */}
-    </>
-  );
+  return <>{handlePremaVisibilty()}</>;
 }
 export default ArticleHidden;

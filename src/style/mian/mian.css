@@ -1,12 +1,53 @@
 main {
   display: grid;
-  grid-template-columns: minmax(4ch, 1fr) 5fr minmax(4ch, 1fr);
-  grid-template-rows: 1rem auto auto 2rem;
+  grid-template-columns: minmax(20px, 5%) 90% minmax(20px, 5%);
+  /* grid-template-columns: minmax(7%, 20px) minmax(300px, 85%) minmax(7%, 20px); */
+
+  grid-template-rows: auto auto 2rem;
   grid-template-areas:
-    ". . ."
     ". articleArea ."
     ". subpageButtons ."
     ". . .";
+}
+.pageName {
+  /* width: 80%; */
+  padding-top: calc(var(--font-S) - 4px);
+  text-align: center;
+  position: relative;
+  display: flex;
+  gap: 5%;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  &::before {
+    content: url("../../elements/multimedia/dot.png");
+    top: calc(50%);
+    left: 0;
+  }
+  &::after {
+    content: url("../../elements/multimedia/dot.png");
+    top: calc(50%);
+    left: 100%;
+    transform: scaleX(-1);
+  }
+  h1 {
+    line-height: 90%;
+  }
+}
+h1 {
+  /* width: max-content; */
+  font-size: calc(var(--font-S) * 1.4);
+  text-align: center;
+  color: #73383e;
+  font-family: "KereruBold";
+  .h1BigLetter {
+    font-size: calc(var(--font-S) * 2);
+    color: #73383e;
+  }
+}
+.backButtonLiContainer {
+  transform: translate(0, -100%);
 }
 .backButton {
   grid-area: 3/2/3/3;
@@ -19,6 +60,15 @@ main {
 }
 .activeArticle {
   grid-area: articleArea;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--font-S) / 2);
+
+  .articleLi {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--font-S) / 2);
+  }
 }
 .subpagesList {
   max-width: 100%;
@@ -48,21 +98,49 @@ main {
   display: block;
   align-items: center;
 }
+.activSubpage > button {
+  pointer-events: none;
+  text-decoration: underline;
+  color: #73383e;
+}
 .prevSubpages > button > img {
   transform: rotate(180deg);
 }
-.scherchLink {
-  a {
-    position: relative;
+.scherchUl {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.scherchLi {
+  width: var(--articleContentWidth);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .scherchLink {
+    align-self: start; /* position: relative; */
     margin-bottom: 2rem;
     color: #73383e;
-    display: inline-block;
+    display: flex;
     &::after {
       content: url("../../elements/multimedia/strzalka.png");
       position: absolute;
-      top: 0%;
-      left: 100%;
+      top: 100%;
+      left: 0%;
     }
+  }
+  .mainArticle {
+    padding-bottom: 10px;
+  }
+  .mainArticle::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 5px;
+    height: 1px;
+    width: 100%;
+    background-color: #73383e;
+    background-size: 1ch 10px;
   }
   article {
     &.hiddenFind {
@@ -74,5 +152,13 @@ main {
     span {
       font-weight: bolder;
     }
+  }
+}
+.scherchInfo {
+  text-align: center;
+  min-height: 3rem;
+  span {
+    color: #73383e;
+    font-size: 3rem;
   }
 }

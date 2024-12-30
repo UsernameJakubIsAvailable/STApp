@@ -1,12 +1,12 @@
 #root {
   width: 100%;
-  height: 100dvh;
+  /* height: 100dvh; */
   display: grid;
   grid-template-columns: 1fr repeat(3, 25rem) 1fr;
-  grid-template-rows: 20rem auto;
+  grid-template-rows: var(--headerHeight) calc(90dvh - var(--headerHeight));
   gap: 0 3em;
   z-index: 1;
-  padding-bottom: var(--font-S);
+  /* padding-bottom: var(--font-S); */
 }
 #root::before {
   content: "";
@@ -23,64 +23,96 @@
 }
 header {
   grid-area: 1 / 2 / 2 / 5;
-  position: relative;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
 nav {
   position: sticky;
   grid-area: 2 / 2 / 3 / 3;
   position: -webkit-sticky;
-  top: 5vh;
-  height: 90vh;
+  top: var(--headerHeight);
+  height: calc(99dvh - var(--headerHeight));
 }
 main {
   grid-area: 2 / 3 / 3 / 5;
+  position: sticky;
+  position: -webkit-sticky;
+  top: var(--headerHeight);
+  height: calc(99dvh - var(--headerHeight));
+  overflow-y: hidden;
+  padding-right: 15px;
+  width: calc(100% + 15px);
 }
-@media (max-width: 100rem) {
+@media (max-width: 100em) {
   #root {
+    --articleContentWidth: 70ch;
+
+    --headerHeight: 8.4rem;
     grid-template-columns: 1fr repeat(3, 20rem) 1fr;
-    grid-template-rows: 20rem auto;
+    /* grid-template-rows: var(--headerHeight) auto; */
+    --font-S: 1.4rem;
   }
 }
 @media (max-width: 70rem) {
   #root {
-    grid-template: 200px auto / 1fr repeat(3, 16em) 1fr;
+    --articleContentWidth: 50ch;
+
+    --headerHeight: 7.8rem;
+    grid-template-columns: 1fr repeat(3, 16em) 1fr;
     gap: 0 1em;
-    --font-S: 1.4rem;
   }
 }
 @media (max-width: calc(50rem + 60px)) {
   #root {
-    grid-template: 150px auto / 1fr 10rem 10rem 10rem 1fr;
+    --headerHeight: 3.6rem;
+    grid-template-columns: 1fr 10rem 10rem 10rem 1fr;
+    /* grid-template: var(--headerHeight) auto / 1fr 10rem 10rem 10rem 1fr; */
     min-width: min-content;
     position: relative;
-    --font-S: 1.2rem;
+    --font-S: 1.4rem;
   }
-  nav {
+
+  nav,
+  .backgroundForNav {
     grid-area: 1/1/2/2;
-    top: 0;
-    height: 100dvh;
+    top: 5dvh;
+    height: 90dvh;
     width: 350px;
     max-width: 100vw;
     position: fixed;
     padding-left: 40px;
     left: -500px;
-    z-index: 2;
+    z-index: 5;
     transition: transform 1s ease;
   }
 
   .hiddenNav {
     transform: translate(500px);
   }
+  .backgroundForNav {
+    padding: 0;
+  }
+
+  #root:has(.hiddenNav) {
+    .backgroundForNav {
+      transform: translate(500px);
+    }
+  }
   #root:has(nav > .showAndHideNavButton.close) > main::after {
     position: fixed;
     content: "";
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     background-color: #00000066;
+    z-index: 2;
     left: 0;
     top: 0;
   }
   main {
+    grid-area: 2 / 2 / 3 / 5;
+  }
+  .backgroundForMain {
     grid-area: 2 / 2 / 3 / 5;
   }
   .letterContein {
@@ -88,7 +120,7 @@ main {
   }
   .showAndHideNavButton {
     position: absolute;
-    z-index: 3;
+    z-index: 6;
     height: 5rem;
     left: 500px;
     /* left: calc(100%); */
@@ -131,10 +163,29 @@ main {
   .showAndHideNavButton.close {
     transform: translate(-150px);
   }
+  .scrollTumb {
+    pointer-events: none;
+    * {
+      pointer-events: none;
+    }
+  }
+  .scrollIMG {
+    scale: 0.6;
+  }
+  #mainScroll {
+    left: 100%;
+  }
+  #navScroll {
+    right: -20px;
+  }
 }
 @media (max-width: 40em) {
   #root {
-    grid-template: 150px auto / 1fr 90% 1fr;
+    --articleContentWidth: 9 0%;
+
+    /* --headerHeight: 120px; */
+    /* grid-template: var(--headerHeight) auto / 1fr 90% 1fr; */
+    grid-template-columns: 1fr 90% 1fr;
     gap: 0;
     --font-S: 1rem;
     & > .myCustomScroll {
@@ -144,7 +195,45 @@ main {
   main {
     grid-area: 2 / 2 / 3 / 3;
   }
+  .backgroundForMain {
+    grid-area: 2 / 2 / 3 / 3;
+  }
   .showAndHideNavButton.close {
     transform: translate(-500px);
+  }
+}
+@media (max-height: 20rem) {
+  .scrollTumb {
+    pointer-events: none;
+    * {
+      pointer-events: none;
+    }
+  }
+}
+@media (min-height: 20rem) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+@media (min-width: calc(50em + 60px)) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

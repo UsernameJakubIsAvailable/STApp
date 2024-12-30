@@ -65,13 +65,6 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
 }
 } */
 
-::-webkit-scrollbar {
-  display: none;
-}
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 #root {
   overflow: scroll;
   & > .myCustomScroll {
@@ -150,6 +143,21 @@ radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1
   }
 }
 
-#mainScrolledChild {
-  min-height: 200vh;
+.isMobile {
+  pointer-events: none;
+  * {
+    pointer-events: none;
+  }
+}
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+@media (orientation: landscape) {
+  #root:has(.isMobile) > main > #mainScrolledChild {
+    min-height: 400vh;
+  }
 }

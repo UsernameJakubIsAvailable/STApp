@@ -1,8 +1,7 @@
 function Title(props) {
   return (
-    <section className="titleAndDate">
+    <section className="title">
       <h2 className="articleTitle">{props.title}</h2>
-      <p>{props.date}</p>
     </section>
   );
 }

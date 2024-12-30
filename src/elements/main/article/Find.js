@@ -1,20 +1,23 @@
-import { useState } from "react";
+import ArticleNews from "./ArticleNews";
 
 function Find(props) {
-  const [visible, setVisible] = useState(false);
+  const article = [
+    {
+      type: "RedusialParagraf",
+      context: props.findContext,
+    },
+  ];
 
   return (
     <>
-      <article className={visible ? "visibleFind" : "hiddenFind"}>
-        {props.findContext}
-      </article>
-      <button
-        onClick={() => {
-          setVisible(!visible);
-        }}
-      >
-        {visible ? "zwiń" : "czytaj dalej..."}
-      </button>
+      <ArticleNews
+        data={[
+          {
+            type: "RedusialParagraf",
+            context: props.findContext,
+          },
+        ]}
+      />
     </>
   );
 }

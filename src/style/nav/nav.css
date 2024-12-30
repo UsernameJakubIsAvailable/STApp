@@ -2,12 +2,15 @@ nav {
   display: grid;
   flex-direction: column;
   grid-template:
-    calc(var(--font-S) * 3.5) 1fr calc(var(--font-S) * 3.5)
+    calc(10dvh) var(--navUlHeight) 12dvh
     / 1fr;
+  padding: 5dvh 20px 0;
 }
 .swordIcon {
   width: 30px;
   transition: all 1s ease;
+  animation: shake 15s infinite;
+  animation-delay: 4s;
 }
 .swordITop.close {
   transform: translate(-0%, 100%) rotate(-45deg);
@@ -28,11 +31,11 @@ nav {
 .websiteNav {
   grid-area: 2/1;
   width: calc(100% + 2ch + 5px);
-  overflow-y: auto;
 }
 .navElement {
   border-radius: 1.3rem;
-  padding-left: 1ch;
+  padding-left: 1.5ch;
+  padding-top: 0.35rem;
 }
 .visableSectionButton {
   display: flex;
@@ -44,13 +47,21 @@ nav {
   display: block;
   color: #303030;
   font-size: var(--font-S);
-  width: 100%;
+  width: 90%;
   padding-left: calc(0.5em + 25px);
 }
 .dot {
-  width: 25px;
+  width: 26px;
   height: 31px;
   margin-right: 0.5em;
+}
+.smallDot {
+  width: 21px;
+  height: 25px;
+}
+.noBold {
+  font-weight: 100;
+  padding-left: 0.5em;
 }
 .navSectionBreak {
   width: 100%;
@@ -58,29 +69,31 @@ nav {
 .search {
   display: grid;
   grid-template:
-    calc(var(--font-S) - 1rem) calc(var(--font-S) + 0.4rem)
-    0 / 0 auto 1fr 0;
+    calc(var(--font-S) + 0.4rem)
+    minmax(0, calc(var(--font-S) + 0.4rem)) / 0 auto 1fr 0;
   gap: calc(var(--font-S) - 0.5rem) 1ch;
 }
 .search > input {
   width: 100%;
   background-color: rgba(255, 235, 205, 0);
   background-image: linear-gradient(160deg, #8377574a 2%, transparent 30%);
-  grid-area: 2 / 3 / 3 / 4;
+  grid-area: 1 / 3 / 2 / 4;
 }
 .search > a {
   display: inline-block;
   height: 100%;
-  grid-area: 2 / 2 / 2 /2;
+  grid-area: 1 / 2 / 2 /2;
 }
 .search > img {
   width: 100%;
-  grid-area: 3 / 1 / 4 / 5;
+  max-height: calc(var(--font-S) + 0.4rem);
+  grid-area: 2 / 1 / 3 / 5;
 }
 .socialLinks {
+  grid-area: 3/1/3/3;
   display: grid;
   grid-template:
-    var(--font-S) calc(var(--font-S) * 2.5)
+    var(--font-S) calc(100% - var(--font-S))
     / 1fr 1fr;
   gap: 0 1ch;
   & > .navSectionBreak {
@@ -90,7 +103,7 @@ nav {
     display: grid;
     img {
       justify-self: end;
-      height: calc(var(--font-S) * 2.5);
+      height: calc(2 * var(--font-S));
       aspect-ratio: 1/1;
     }
   }
@@ -98,3 +111,95 @@ nav {
     justify-self: start;
   }
 }
+@keyframes shake {
+  46% {
+    scale: 1;
+  }
+  48% {
+    scale: 0.9;
+  }
+  50% {
+    scale: 1;
+  }
+
+  52% {
+    scale: 0.9;
+  }
+  54% {
+    scale: 1;
+  }
+}
+
+@media (max-height: 31rem) {
+  nav {
+    width: 400px;
+    grid-template:
+      repeat(3, 5dvh) 30dvh 30dvh repeat(2, 5dvh)
+      / 100px 260px;
+  }
+  .backgroundForNav {
+    width: 400px;
+  }
+  #websiteNav {
+    grid-area: 3/2/6/3;
+    height: 60dvh;
+
+    #navWrapper {
+      height: 60dvh;
+    }
+    /* &::after {
+      content: url("../../elements/multimedia/ozdobnik-navbar.png");
+      position: absolute;
+      top: calc(45vh);
+      left: -20px;
+      width: 78vh;
+      height: auto;
+      rotate: 90deg;
+      overflow: hidden;
+    } */
+  }
+  .search {
+    grid-area: 1/1/4/2;
+    grid-template: 1fr 1fr /1fr;
+    gap: 0;
+    padding: 0 0.3em;
+    & > input {
+      grid-area: 2/1/-1/-1;
+      max-height: min-content;
+      align-self: center;
+    }
+    & > a {
+      height: 7dvh;
+      grid-area: 1/1/2/2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      * {
+        height: 100%;
+      }
+    }
+  }
+  .navSectionBreak {
+    display: none;
+  }
+  .socialLinks {
+    grid-area: 4/1/-1/2;
+    display: flex;
+    flex-direction: column;
+    a {
+      align-self: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+}
+/* @media (max-height: 31rem) and (max-width: calc(460px + 45rem)) {
+  #root {
+    grid-template-columns: 1fr 400px repeat(2, 20rem) 1fr;
+  }
+} */

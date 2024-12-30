@@ -6,23 +6,35 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header>
+    <header className="extraSizeMain">
       <Link
         onClick={() => {
           document.getElementById("root").scrollTo(0, 0);
         }}
-        className="navLink"
+        className="headerLink"
         to={"/"}
       >
+        <div className="horseAndlLeaves Camel">
+          <img className="leaves l1" alt="leaves" src={listki} />
+          <img className="raiderS" alt="tomasz na koniu" src={raiderHorse} />
+        </div>
         <img className="logo" alt="logo" src={logo} />
-        <img className="leaves l1" alt="leaves" src={listki} />
-        <img className="leaves l2" alt="leaves" src={listki} />
-        <img
+        <div className="horseAndlLeaves Horse">
+          <img className="leaves l2" alt="leaves" src={listki} />
+          <img
+            className="raiderN"
+            alt="look at my horse my horse is amazing"
+            src={raiderTomasz}
+          />
+        </div>
+        {/* <img className="leaves l1" alt="leaves" src={listki} /> */}
+        {/* <img className="leaves l2" alt="leaves" src={listki} /> */}
+        {/* <img
           className="raiderN"
           alt="look at my horse my horse is amazing"
           src={raiderHorse}
-        />
-        <img className="raiderS" alt="tomasz na koniu" src={raiderTomasz} />
+        /> */}
+        {/* <img className="raiderS" alt="tomasz na koniu" src={raiderTomasz} /> */}
       </Link>
     </header>
   );

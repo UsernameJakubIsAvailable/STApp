@@ -1,42 +1,92 @@
-a {
-  display: block;
+.headerLink {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .logo {
+  max-height: 90%;
+  padding-top: 10px;
+  max-width: 50%;
   position: absolute;
-  width: 50%;
-  max-width: 460px;
-  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.horseAndlLeaves {
+  height: 100%;
+  aspect-ratio: 1/1;
+  display: grid;
+  grid-template: 1fr 70% 1fr / 1fr 70% 1fr;
+  * {
+    grid-area: 2/2/3/3;
+    justify-self: center;
+    max-height: 100%;
+  }
+}
+.l1 {
+  transform: rotateY(180deg);
+  z-index: -1;
+}
+/* @media (max-width: calc(60px + 50rem)) {
+  .horseAndlLeaves {
+    opacity: 0.5;
+  }
+} */
+@media (min-width: 100rem) {
+  .headerLink {
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: calc(50rem + 60px)) {
+  .logo {
+    max-height: 95%;
+
+    padding-top: 0;
+  }
+}
+
+/* .logo {
+  position: absolute;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  max-height: 80%;
+  max-width: 50%;
 }
 .leaves {
   position: absolute;
-  width: 30%;
+  max-height: 55%;
+  max-width: 50%;
+  top: 50%;
 }
 .l1 {
-  left: 70%;
-  top: 65%;
+  right: 6%;
   transform: translate(0, -50%);
 }
 .l2 {
-  left: 1%;
-  top: 65%;
+  left: 6%;
+
   transform: translate(0, -50%) rotateY(180deg);
 }
 .raiderN {
   position: absolute;
-  left: 8%;
-  top: 30%;
-  width: 15%;
+  left: 10%;
+  transform: translate(0, -50%);
+  top: 50%;
+
+  max-height: 65%;
 }
 .raiderS {
   position: absolute;
-  left: 77.5%;
-  top: 28%;
-  width: 15%;
+  right: 10%;
+  transform: translate(0, -50%);
+  top: 50%;
+
+  max-height: 65%;
 }
 .letter {
   height: 100%;
@@ -44,9 +94,10 @@ a {
 .letterContein {
   height: 100%;
 }
-@media (max-width: 40rem) {
+@media (max-width: calc(60px + 50rem)) {
   .raiderN,
-  .raiderS {
-    top: 60px;
+  .raiderS,
+  .leaves {
+    opacity: 0.6;
   }
-}
+} */
